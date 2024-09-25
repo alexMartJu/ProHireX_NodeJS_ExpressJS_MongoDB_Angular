@@ -7,6 +7,7 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     HomeModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    ShopModule
   ],
   providers: [],
   bootstrap: [AppComponent]
