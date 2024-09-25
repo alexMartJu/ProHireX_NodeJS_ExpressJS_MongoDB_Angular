@@ -1,0 +1,9 @@
+html, body {
+    height: 100%; /* Asegura que el body ocupe el 100% de la altura */
+    margin: 0; /* Elimina márgenes por defecto */
+}
+
+.main-container {
+    min-height: calc(100vh - 100px); /* Ajusta este valor según la altura de tu footer */
+    /* Ajusta 100px al tamaño real de tu footer */
+}
