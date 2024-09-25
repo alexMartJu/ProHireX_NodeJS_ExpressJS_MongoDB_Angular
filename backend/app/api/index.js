@@ -38,7 +38,7 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-
+require('../routes/category.routes')(app);
 
 app.listen(process.env.PORT, () => {
   console.log(`Servidor Express en el puerto ${process.env.PORT}`);
