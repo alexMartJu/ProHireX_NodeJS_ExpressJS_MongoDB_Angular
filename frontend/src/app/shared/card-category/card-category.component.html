@@ -1,1 +1,8 @@
-<p>card-category works!</p>
+<div *ngIf="category" class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{category.image}}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{category.category_name}}</h5>
+        <a href="#" class="btn btn-primary" [routerLink]="['/shop/categories/', category.slug]" data-abc="true">View
+            Jobs</a>
+    </div>
+</div>

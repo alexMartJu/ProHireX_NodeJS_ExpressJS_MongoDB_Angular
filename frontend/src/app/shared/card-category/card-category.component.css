@@ -1,0 +1,23 @@
+.card {
+    margin: 20px; /* Margen entre las tarjetas */
+    flex: 1 1 calc(33.33% - 40px); /* Ajusta el ancho para 3 tarjetas por fila */
+    max-width: calc(33.33% - 40px); /* Asegúrate de que no exceda el 33.33% */
+    min-width: 300px; /* Ancho mínimo para evitar que se estrechen demasiado */
+    display: flex; /* Usar Flexbox para contenido interno */
+    flex-direction: column; /* Organiza el contenido verticalmente */
+}
+
+.card img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+    height: 200px; /* Altura fija para la imagen */
+    object-fit: cover; /* Mantiene la proporción de la imagen y evita distorsiones */
+}
+
+.card-body {
+    flex: 1; /* Asegura que el cuerpo de la tarjeta ocupe el espacio restante */
+    display: flex;
+    flex-direction: column; /* Organiza el texto verticalmente */
+    justify-content: center; /* Centra el texto verticalmente */
+}
+
+ 
