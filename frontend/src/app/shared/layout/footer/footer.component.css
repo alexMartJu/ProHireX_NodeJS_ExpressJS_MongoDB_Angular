@@ -1,0 +1,74 @@
+.footer {
+  background: #219ebc !important; 
+  color: #fff; 
+  padding: 20px 0;
+  position: relative; /* Cambia a relative o fixed según tus necesidades */
+  width: 100%; /* Asegura que ocupe el ancho completo */
+  bottom: 0; /* Posiciona el footer en la parte inferior */
+}
+
+.contain {
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
+  display: flex; 
+  flex-wrap: wrap; 
+}
+
+.col {
+  flex: 1; 
+  min-width: 200px; 
+  padding: 10px; 
+}
+
+.col h1 {
+  font-size: 18px; 
+  margin-bottom: 10px; 
+}
+
+.col ul {
+  list-style: none; 
+  padding: 0; 
+}
+
+.col li {
+  margin: 5px 0; 
+}
+
+.col li:hover {
+  color: #ffcc00;  
+}
+
+.social {
+  text-align: center; 
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table; 
+}
+
+.legal {
+  text-align: center;
+}
+
+.col a {
+  text-decoration: none; 
+  color: #fff;
+}
+
+.col a:hover {
+  color: #ffcc00;  
+}
+
+@media only screen and (max-width: 768px) {
+  .contain {
+    flex-direction: column; 
+  }
+
+  .col {
+    text-align: center; 
+    margin-bottom: 20px; 
+  }
+}
