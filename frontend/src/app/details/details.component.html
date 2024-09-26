@@ -1,1 +1,15 @@
-<p>Comprobación Vista Details</p>
+<div class="details_page">
+    <div *ngIf="!job">No job</div>
+    <div class="job" *ngIf="job">
+        <div class="job-info">
+            <div class="title">
+                <h3>{{job.name}}</h3>
+            </div>
+            <div class="product-bio">
+                <div class="description"><strong>Description: </strong>{{job.description}}.</div>
+                <div class="price"><strong>Price: </strong>{{job.price}}€</div>
+            
+            </div>
+        </div>
+    </div>
+</div> 
