@@ -8,6 +8,7 @@ import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
+import { DetailsModule } from './details/details.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ShopModule } from './shop/shop.module';
     HomeModule,
     CoreModule,
     HttpClientModule,
-    ShopModule
+    ShopModule,
+    DetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
