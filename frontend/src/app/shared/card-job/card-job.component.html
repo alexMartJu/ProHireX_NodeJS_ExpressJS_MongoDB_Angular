@@ -1,1 +1,17 @@
-<p>Comprobación card-job</p>
+<div class="container-fluid" class="product" *ngIf="job">
+    <div class="prueba2">
+        <div class="col-md-3 col-10 mt-5 tarjeta">
+            <div class="card mx-auto prueba">
+                <img class="mx-auto" style="margin-top: 10px" src="{{job.img}}" width="200px" height="200px"/>
+                <div class="card-body text-center mx-auto">
+                    <div class='cvp'>
+                        <h5 class="card-title font-weight-bold">{{job.name}}</h5>
+                        <p class="card-text">{{job.price}}€</p>
+                        <a class="btn details px-auto" [routerLink]="['/details/', job.slug]">View Details</a><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
