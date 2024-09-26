@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { DetailsComponent } from './details.component';
+
+const routes: Routes = [
+  {
+    path: ':slug',
+    component: DetailsComponent,
+    resolve: {}
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
