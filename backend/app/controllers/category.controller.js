@@ -19,7 +19,9 @@ const create = asyncHandler(async (req, res) => {
 // ALL CATEGORIES
 const findAll = asyncHandler( async (req, res) => {
 
-    const categories = await Category.find();
+    const  {offset, limit} = req.query;
+
+    const categories = await Category.find({}, {}, { skip: Number(offset), limit: Number(limit)});
 
     if (!categories) {
       return res.status(401).json({
