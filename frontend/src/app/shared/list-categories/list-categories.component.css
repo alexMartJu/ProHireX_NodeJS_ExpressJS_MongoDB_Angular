@@ -6,4 +6,38 @@
     text-align: center;
 }
 
+.line {
+    width: 60%; /* Ajusta el ancho según tu preferencia */
+    height: 4px; /* Grosor de la línea */
+    background: #3498db; /* Color de la línea */
+    margin: 10px auto 10px; /* Centrado y espacio debajo */
+    border-radius: 2px; /* Bordes redondeados para suavizar la línea */
+}
+
+.job-categories {
+    text-align: center; /* Centra el texto */
+    font-size: 32px; /* Tamaño de fuente más grande */
+    font-weight: 700; /* Negrita fuerte */
+    color: #2c3e50; /* Color oscuro y elegante */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    position: relative; /* Para el efecto de subrayado */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+.job-categories::after {
+    content: ''; /* Crea un pseudo-elemento */
+    display: block; /* Hace que sea un bloque */
+    width: 60%; /* Ajusta el ancho según tu preferencia */
+    height: 4px; /* Grosor de la línea */
+    background: #3498db; /* Color de la línea (puedes cambiarlo) */
+    margin: 10px auto 0; /* Margen superior y centrado */
+    border-radius: 2px; /* Bordes redondeados para suavizar la línea */
+}
+
+.job-categories:hover {
+    color: #3498db; /* Cambia el color del texto al pasar el mouse */
+    transition: color 0.3s ease; /* Transición suave para el color */
+}
+
 
