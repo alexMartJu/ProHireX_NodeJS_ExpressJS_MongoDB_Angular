@@ -46,6 +46,14 @@ category_schema.methods.toCategoryResponse = function(){
     };
 };
 
+category_schema.methods.toCategoryCarouselResponse = function(){
+    return {
+        slug: this.slug,
+        image: this.image,
+        category_name: this.category_name
+    };
+};
+
 category_schema.methods.addJob = function (job_id) { 
     if(this.jobs.indexOf(job_id) === -1){ 
         this.jobs.push(job_id); 
