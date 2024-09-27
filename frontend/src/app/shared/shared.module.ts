@@ -7,6 +7,7 @@ import { ListJobsComponent } from './list-jobs/list-jobs.component';
 import { CardJobComponent } from './card-job/card-job.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -21,7 +22,8 @@ import { CarouselItemsComponent } from './carousel-items/carousel-items.componen
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgbModule
   ],
   exports: [
       ListCategoriesComponent,

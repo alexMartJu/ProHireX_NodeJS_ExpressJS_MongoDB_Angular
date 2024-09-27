@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DetailsModule } from './details/details.module';
     CoreModule,
     HttpClientModule,
     ShopModule,
-    DetailsModule
+    DetailsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
