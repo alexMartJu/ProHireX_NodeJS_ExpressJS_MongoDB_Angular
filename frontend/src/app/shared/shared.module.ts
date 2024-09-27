@@ -8,7 +8,7 @@ import { CardJobComponent } from './card-job/card-job.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    InfiniteScrollModule
   ],
   exports: [
       ListCategoriesComponent,
