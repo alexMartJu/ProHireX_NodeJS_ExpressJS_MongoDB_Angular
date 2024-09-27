@@ -5,6 +5,7 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { CardCategoryComponent } from './card-category/card-category.component';
 import { ListJobsComponent } from './list-jobs/list-jobs.component';
 import { CardJobComponent } from './card-job/card-job.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 
@@ -13,7 +14,8 @@ import { CardJobComponent } from './card-job/card-job.component';
     ListCategoriesComponent,
     CardCategoryComponent,
     ListJobsComponent,
-    CardJobComponent
+    CardJobComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { CardJobComponent } from './card-job/card-job.component';
       ListCategoriesComponent,
       CardCategoryComponent,
       ListJobsComponent,
-      CardJobComponent
+      CardJobComponent,
+      CarouselComponent
   ],
 })
 export class SharedModule { }
