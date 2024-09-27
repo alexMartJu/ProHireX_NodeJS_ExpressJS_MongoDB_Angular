@@ -6,6 +6,7 @@ import { CardCategoryComponent } from './card-category/card-category.component';
 import { ListJobsComponent } from './list-jobs/list-jobs.component';
 import { CardJobComponent } from './card-job/card-job.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 
 
 
@@ -15,7 +16,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     CardCategoryComponent,
     ListJobsComponent,
     CardJobComponent,
-    CarouselComponent
+    CarouselComponent,
+    CarouselItemsComponent
   ],
   imports: [
     CommonModule,
