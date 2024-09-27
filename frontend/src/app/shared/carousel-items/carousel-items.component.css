@@ -1,0 +1,20 @@
+ngb-carousel {
+    width: 100%; /* Ocupar todo el ancho de la ventana */
+    height: 75vh; /* Altura del 80% de la ventana */
+    margin: 0 auto; /* Centrar el carrusel */
+}
+
+ngb-carousel img {
+    width: 100%; /* Ocupar el 100% del ancho */
+    height: 100%; /* Ocupar el 100% de la altura */
+    outline: none;
+    object-fit: cover; /* Mantener la proporción y cubrir el área del contenedor */
+}
+
+.contenedor {
+    text-align: center; /* Centrar horizontalmente */
+    height: 75vh; /* Mantener la altura del contenedor al 80% de la pantalla */
+    overflow: hidden; /* Ocultar cualquier parte de la imagen que se desborde */
+    padding: 0; /* Eliminar padding */
+    margin: 0; /* Eliminar margen */
+}

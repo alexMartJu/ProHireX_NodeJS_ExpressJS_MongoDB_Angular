@@ -1,1 +1,19 @@
-<p>carousel-items works!</p>
+<ngb-carousel *ngIf="page === 'categories'" [interval]="3000" [pauseOnHover]="false" [pauseOnFocus]="false">
+	<ng-template *ngFor="let category of categories;" ngbSlide >
+		<div class="contenedor" >
+			<img class="img_carousel" src="../../..{{category.image}}" [routerLink]="['/shop/categories/', category.slug]" />
+		</div>
+		<div class="carousel-caption display-4">
+			<h3>{{category.category_name}}</h3>
+		</div>
+	</ng-template>
+</ngb-carousel>
+
+<ngb-carousel *ngIf="page === 'details'" [interval]="3000" [pauseOnHover]="false" [pauseOnFocus]="false">
+	<ng-template *ngFor="let item of jobs_details;" ngbSlide >
+		<div class="contenedor" >
+			<img class="img_carousel" src="../../../{{item}}" />
+		</div>
+	</ng-template>
+</ngb-carousel>
+  
