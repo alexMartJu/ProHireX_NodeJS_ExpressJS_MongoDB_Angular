@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { Job } from '../models/job.model';
 import { environment } from '../../../environments/environment';
+import { Filters } from '../models/filters.model';
 
 const URL = `${environment.api_url}/jobs`;
 const URLcat = `${environment.api_url}/categories`;
@@ -30,7 +31,9 @@ export class JobService {
   }
 
   //FILTERS
-  get_products_filter(): Observable<Job[]> {
-    return this.http.get<Job[]>(URL);
+  get_products_filter(filters : Filters): Observable<Job[]> {
+    let params = {};
+    params = filters;
+    return this.http.get<Job[]>(URL, {params});
   }
 }

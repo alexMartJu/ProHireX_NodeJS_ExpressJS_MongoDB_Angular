@@ -5,6 +5,7 @@ import { Category } from '../models/category.model';
 import { environment } from '../../../environments/environment';
 
 const URL = `${environment.api_url}/categories`;
+const URL_select = `${environment.api_url}/categories_select_filter`;
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class CategoryService {
 
   all_categories(params: any): Observable<Category[]> {
     return this.http.get<Category[]>(URL , {params});
+  }
+
+  all_categories_select(): Observable<Category[]> {
+    return this.http.get<Category[]>(URL_select)
   }
 }
 
