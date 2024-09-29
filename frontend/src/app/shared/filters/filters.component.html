@@ -1,1 +1,25 @@
-<p>filters works!</p>
+<div class="container-fluid bg-white subheader">
+	<div class="row d-flex justify-content-center align-items-center width: 100%;">
+    <div class="col-md-2">
+      <div class="form-group ">
+        <select class="form-control" name="category" id="category" [(ngModel)]="id_cat" (change)="filter_products()">
+          <option disabled selected value="">Category</option>
+          <option *ngFor="let category of listCategories"  [value]="category.id_cat">{{category.category_name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div>
+        <input type="number" class="form-control" placeholder="Precio Minimo" [(ngModel)]="price_min" min="0" step="5" (input)="filter_products()">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div>
+        <input type="number" class="form-control" placeholder="Precio Maximo" [(ngModel)]="price_max" min="0" step="5" (input)="filter_products()">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-danger btn-block" (click)="remove_filters()">Remove Filters</button>
+    </div>
+  </div>
+</div>

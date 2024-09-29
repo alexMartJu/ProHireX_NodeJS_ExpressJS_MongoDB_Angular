@@ -10,6 +10,7 @@ import { CarouselItemsComponent } from './carousel-items/carousel-items.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import { FiltersComponent } from './filters/filters.component';
     CommonModule,
     RouterModule,
     NgbModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
       ListCategoriesComponent,

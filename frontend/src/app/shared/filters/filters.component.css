@@ -1,0 +1,58 @@
+.subheader {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    border: 1px solid #219ebc;
+}
+
+.subheader .row {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.subheader select,
+.subheader input {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.subheader select:focus,
+.subheader input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.subheader button {
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.subheader button:hover {
+    background-color: #dc3545;
+}
+
+@media (max-width: 768px) {
+    .subheader .row {
+        flex-direction: column;
+    }
+
+    .subheader .col-md-2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .subheader button {
+        width: 100%;
+    }
+}
