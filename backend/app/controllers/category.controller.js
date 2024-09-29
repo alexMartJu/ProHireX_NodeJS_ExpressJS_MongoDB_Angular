@@ -57,9 +57,27 @@ const delete_category = asyncHandler(async (req, res) => {
     res.send({message: "Category was deleted successfully!"}); 
 });
 
+const findCategoriesSelect = asyncHandler( async (req, res) => {
+
+  const categories = await Category.find();
+
+  if (!categories) {
+    return res.status(401).json({
+      message: "Category not found"
+    })
+  }
+  
+  return res.status(200).json({
+    categories: await Promise.all(categories.map( async categories => {
+        return await categories.toCategoryResponse()
+    }))
+  });
+});
+
 module.exports = {
   create,
   findAll,
   findOne,
-  delete_category
+  delete_category,
+  findCategoriesSelect
 }

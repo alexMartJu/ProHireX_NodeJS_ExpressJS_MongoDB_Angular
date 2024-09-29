@@ -49,14 +49,14 @@ const findAllJob = asyncHandler(async (req, res) => { //
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    let limit = transUndefined(req.query.limit, 3);
-    let offset = transUndefined(req.query.offset, 0);
+    // let limit = transUndefined(req.query.limit, 3);
+    // let offset = transUndefined(req.query.offset, 0);
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
     let nameReg = new RegExp(name);
-    let favorited = transUndefined(req.query.favorited, null);
+    // let favorited = transUndefined(req.query.favorited, null);
 
     query = {
         name: { $regex: nameReg },
@@ -67,12 +67,12 @@ const findAllJob = asyncHandler(async (req, res) => { //
         query.id_cat = category;
     }
 
-    if (favorited) {
-        const favoriter = await User.findOne({ username: favorited });
-        query._id = { $in: favoriter.favorites };
-    }
+    // if (favorited) {
+    //     const favoriter = await User.findOne({ username: favorited });
+    //     query._id = { $in: favoriter.favorites };
+    // }
 
-    const jobs = await Job.find(); 
+    const jobs = await Job.find(query); 
     const job_count = await Job.find(query).countDocuments(); 
 
 

@@ -12,4 +12,7 @@ module.exports = (app) => {
 
     // Delete a category
     app.delete('/categories/:slug', categories.delete_category);
+
+    // Filtro Todas las Categorias
+    app.get('/categories_select_filter', categories.findCategoriesSelect);
 }
