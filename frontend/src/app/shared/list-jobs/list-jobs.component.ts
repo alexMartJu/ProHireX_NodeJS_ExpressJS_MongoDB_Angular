@@ -4,6 +4,7 @@ import { Job } from '../../core/models/job.model';
 import { Category } from '../../core/models/category.model';
 import { CategoryService } from '../../core/services/category.service';
 import { ActivatedRoute } from '@angular/router';
+import { Filters } from '../../core/models/filters.model';
 
 @Component({
   selector: 'app-list-jobs',
@@ -15,6 +16,7 @@ export class ListJobsComponent implements OnInit {
   job: Job[] = [];
   slug_Category!: string | null;
   listCategories: Category[] = [];
+  filters = new Filters();
 
   constructor(private jobService: JobService,
     private ActivatedRoute: ActivatedRoute,
@@ -27,7 +29,7 @@ export class ListJobsComponent implements OnInit {
       if(this.slug_Category !== null) {
         this.get_products_by_cat();
       }else{
-        this.get_list_filtered();
+        this.get_list_filtered(this.filters);
       }
   }
 
@@ -43,9 +45,10 @@ export class ListJobsComponent implements OnInit {
     }
   }
 
-  get_list_filtered() {
+  get_list_filtered(filters: Filters) {
+    this.filters = filters;
     console.log("entro aqui2");
-      this.jobService.get_products_filter().subscribe(
+      this.jobService.get_products_filter(filters).subscribe(
         (data: any) => {
           this.job = data.jobs;
           console.log(this.job);
