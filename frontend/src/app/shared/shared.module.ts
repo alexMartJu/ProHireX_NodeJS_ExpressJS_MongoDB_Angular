@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CardJobComponent,
     CarouselComponent,
     CarouselItemsComponent,
-    FiltersComponent
+    FiltersComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       ListJobsComponent,
       CardJobComponent,
       CarouselComponent,
-      FiltersComponent
+      FiltersComponent,
+      SearchComponent
   ],
 })
 export class SharedModule { }
