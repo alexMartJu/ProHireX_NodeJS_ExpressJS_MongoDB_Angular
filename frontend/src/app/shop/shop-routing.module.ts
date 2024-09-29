@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'categories/:slug',
     component: ShopComponent,
     resolve: {},
+  },
+  {
+    path: ':filters',
+    component: ShopComponent,
+    resolve: {},
   }
 ];
 
