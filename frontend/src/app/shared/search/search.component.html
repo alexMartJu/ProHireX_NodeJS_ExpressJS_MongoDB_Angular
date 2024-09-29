@@ -1,1 +1,15 @@
-<p>search works!</p>
+<div class="container-fluid subheader">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-8"> 
+            <form class="search" name="search">
+                <i class="bi bi-search"></i>
+                <input type="text" list="search" class="input" name="txt" [(ngModel)]="search_value" (input)="type_event($any($event.target).value)" 
+                    (change)="search_event(this)">
+                <datalist id="search">
+                    <option *ngFor="let job of listJobs" [value]="job.name">{{job.name}}</option>
+                </datalist>
+                <button class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+</div>

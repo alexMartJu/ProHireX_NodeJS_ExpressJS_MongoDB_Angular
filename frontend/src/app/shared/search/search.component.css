@@ -1,0 +1,64 @@
+.container-fluid.subheader {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid #219ebc; /* Borde superior */
+    border-left: 1px solid #219ebc; /* Borde izquierdo */
+    border-right: 1px solid #219ebc; /* Borde derecho */
+    border-bottom: none; /* Sin borde inferior */
+    background-color: white;
+    z-index: 1001;
+    border-radius: 10px 10px 0 0;
+}
+
+.row {
+    margin: 0; /* Eliminar márgenes */
+}
+
+.search {
+    display: flex; /* Usar flexbox para alinear los elementos */
+    align-items: center; /* Centrar verticalmente */
+    width: 100%; /* Asegurarse de que el formulario ocupe el 100% del ancho */
+    position: relative; /* Para el icono de búsqueda */
+}
+
+.search .bi-search {
+    position: absolute; /* Posicionar el icono dentro del input */
+    left: 15px;
+    color: #6c757d; /* Color gris */
+    pointer-events: none; /* No permitir interacciones */
+}
+
+.input {
+    flex: 1; /* Permitir que el input ocupe el espacio disponible */
+    padding: 10px 40px; /* Espaciado interior */
+    border: 1px solid #ced4da; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: border-color 0.3s; /* Transición suave para el borde */
+}
+
+.input:focus {
+    border-color: #007bff; /* Cambiar el color del borde al enfocar */
+    outline: none; /* Eliminar el borde por defecto */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Color de fondo del botón */
+    border-color: #007bff; /* Color del borde del botón */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interior */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-left: 10px; /* Espaciado entre el input y el botón */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3; 
+}
+
+/* .datalist {
+    display: none; 
+} */

@@ -1,11 +1,14 @@
 .subheader {
     position: sticky;
-    top: 0;
+    top: 84px;
     z-index: 1000;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px 0;
-    border: 1px solid #219ebc;
+    border-left: 1px solid #219ebc; /* Borde izquierdo */
+    border-right: 1px solid #219ebc; /* Borde derecho */
+    border-bottom: 1px solid #219ebc; /* Sin borde inferior */
+    border-radius: 0 0 10px 10px;
 }
 
 .subheader .row {

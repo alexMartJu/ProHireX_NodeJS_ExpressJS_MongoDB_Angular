@@ -36,4 +36,13 @@ export class JobService {
     params = filters;
     return this.http.get<Job[]>(URL, {params});
   }
+
+  //SEARCH
+  find_job_name(search: string): Observable<any> {
+    return this.http.get<Job>(`${URL}?name=${search}`).pipe(
+        map((data) => {
+        return data;
+        })
+    );
+  }
 }
