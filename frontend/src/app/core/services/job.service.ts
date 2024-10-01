@@ -26,8 +26,8 @@ export class JobService {
   }
 
   //GET JOB BY CATEGORY
-  getJobsByCategory(slug: String): Observable<Job[]> {
-    return this.http.get<Job[]>(`${URLcat}/${slug}/jobs`);
+  getJobsByCategory(slug: String, filters: Filters): Observable<Job[]> {
+    return this.http.get<Job[]>(`${URLcat}/${slug}/jobs?limit=${filters.limit}&offset=${filters.offset}`);
   }
 
   //FILTERS
