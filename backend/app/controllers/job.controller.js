@@ -49,8 +49,8 @@ const findAllJob = asyncHandler(async (req, res) => { //
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    // let limit = transUndefined(req.query.limit, 3);
-    // let offset = transUndefined(req.query.offset, 0);
+    let limit = transUndefined(req.query.limit, 3);
+    let offset = transUndefined(req.query.offset, 0);
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
@@ -72,7 +72,7 @@ const findAllJob = asyncHandler(async (req, res) => { //
     //     query._id = { $in: favoriter.favorites };
     // }
 
-    const jobs = await Job.find(query); 
+    const jobs = await Job.find(query).limit(Number(limit)).skip(Number(offset)); 
     const job_count = await Job.find(query).countDocuments(); 
 
 
@@ -83,7 +83,7 @@ const findAllJob = asyncHandler(async (req, res) => { //
     return res.status(200).json({
         jobs: await Promise.all(jobs.map(async job => { 
             return await job.toJobResponse();
-        })), job_count: job_count //
+        })), job_count: job_count 
     });
 });
 
@@ -130,28 +130,34 @@ const deleteOneJob = asyncHandler(async (req, res) => {
 });
 
 // JOBS BY CATEGORY
-const GetJobsByCategory = asyncHandler(async (req, res) => { 
+const GetJobsByCategory = asyncHandler(async (req, res) => {
+    let offset = parseInt(req.query.offset) || 0;  // Offset que se envía desde el frontend
+    let limit = parseInt(req.query.limit) || 3;    // Limite de productos por página
+    const slug = req.params.slug;
 
-    // res.json("holaaa")
-    let offset = 0;
-    let limit = 3;
-    const slug = req.params;
-    let job_count = ""; //
-
-    const category = await Category.findOne(slug).exec();
+    const category = await Category.findOne({ slug: slug }).exec();
 
     if (!category) {
-        res.status(400).json({message: "Categoria no encontrada"});
+        return res.status(400).json({ message: "Categoría no encontrada" });
     }
 
+    // Obtenemos el total de trabajos para la paginación
+    const job_count = await Job.countDocuments({ _id: { $in: category.jobs } });
 
-    return await res.status(200).json({
-        jobs: await Promise.all(category.jobs.map(async jobId => { 
-            const jobObj = await Job.findById(jobId).exec();
-            return await jobObj.toJobResponse();
-        })),
-        job_count : job_count //
-    })
+    // Aplicamos paginación con offset y limit
+    const jobs = await Job.find({ _id: { $in: category.jobs } })
+                          .skip(offset)   // Aplicamos el offset
+                          .limit(limit)   // Aplicamos el límite por página
+                          .exec();
+
+    const jobResponses = await Promise.all(jobs.map(async (jobObj) => {
+        return await jobObj.toJobResponse(); 
+    }));
+
+    return res.status(200).json({
+        jobs: jobResponses,
+        job_count: job_count  // Enviamos el total de trabajos
+    });
 });
 
 // UPDATE JOB
