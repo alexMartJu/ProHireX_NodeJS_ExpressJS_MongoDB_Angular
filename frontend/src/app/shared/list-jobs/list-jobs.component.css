@@ -4,3 +4,10 @@
     align-items: center;
     flex-wrap: wrap
 }
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap
+}

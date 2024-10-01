@@ -3,3 +3,12 @@
 <div class="jobs">
     <app-card-job *ngFor="let job of job" [job]="job"></app-card-job>
 </div>
+<div class="pagination">
+    <nav *ngIf="job.length != 0 && totalPages.length != 1">
+        <ul class="pagination pg-blue">
+            <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}" *ngFor="let pageNumber of totalPages" (click)="setPageTo(pageNumber)">
+            <span class="page-link">{{ pageNumber }}</span>
+            </li>
+        </ul>
+    </nav>
+</div>
