@@ -41,6 +41,7 @@ mongoose.connect(dbConfig.url, {
 require('../routes/category.routes')(app);
 require('../routes/job.routes')(app);
 require('../routes/carousel.routes')(app);
+require('../routes/auth.routes')(app);
 
 app.listen(process.env.PORT, () => {
   console.log(`Servidor Express en el puerto ${process.env.PORT}`);
