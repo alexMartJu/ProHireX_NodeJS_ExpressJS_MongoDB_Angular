@@ -40,7 +40,8 @@ import { SearchComponent } from './search/search.component';
       CardJobComponent,
       CarouselComponent,
       FiltersComponent,
-      SearchComponent
+      SearchComponent,
+      ReactiveFormsModule
   ],
 })
 export class SharedModule { }
