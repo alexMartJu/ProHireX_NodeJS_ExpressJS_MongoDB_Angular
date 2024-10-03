@@ -1,20 +1,50 @@
-<div id="header">   
-    <div class="logo">
-      <a routerLink="home">ProHireX</a>
-    </div>  
-    <nav>
-      <ul>
-        <li>
-          <a routerLink="home">Home</a>
-        </li>
-        <li>
-          <a routerLink="shop">Shop</a>
-        </li>
-        <li>
-          <a routerLink="login">Log In/ Sign In</a>
-        </li>
-      </ul>
-    </nav>
+<div id="header" *ngIf="logged === false">   
+  <div class="logo">
+    <a routerLink="home">ProHireX</a>
+  </div>  
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="home">Home</a>
+      </li>
+      <li>
+        <a routerLink="shop">Shop</a>
+      </li>
+      <li>
+        <a routerLink="/auth/login">Log In/ Sign In</a>
+      </li>
+    </ul>
+  </nav>
 </div>
 
-  
+<div id="header" *ngIf="logged === true">    
+<div class="logo">
+  <a routerLink="home">ProHireX</a>
+</div>
+<nav>
+  <ul>
+    <li>
+      <a routerLink="home">Home</a>
+    </li>
+    <li>
+      <a routerLink="shop">Shop</a>
+    </li>
+    <li>
+      <a routerLink="settings">Settings</a>
+    </li>
+    <li>
+    <a class="nav-link"
+      [routerLink]="['/profile/me', currentUser.username]"
+      routerLinkActive="active">
+      <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" *ngIf="currentUser.image" class="user-pic" style="width: 35px; height: 35px;" alt="user image" />
+      {{ currentUser.username }}
+    </a> 
+    </li>
+    <li>
+      <button class="btn btn-outline-danger" (click)="logout()">
+          Logout
+      </button>
+    </li>
+  </ul>
+</nav>
+</div> 
