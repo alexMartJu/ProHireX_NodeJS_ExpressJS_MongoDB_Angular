@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     ShopModule,
     DetailsModule,
-    NgbModule
+    NgbModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
