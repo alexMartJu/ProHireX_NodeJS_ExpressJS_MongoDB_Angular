@@ -79,6 +79,7 @@ userSchema.methods.toUserResponse = function() {
 
 userSchema.methods.toProfileJSON = function (user) {
     return {
+        uuid: this.uuid,
         username: this.username,
         bio: this.bio,
         image: this.image
