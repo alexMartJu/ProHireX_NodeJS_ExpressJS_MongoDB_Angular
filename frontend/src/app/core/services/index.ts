@@ -4,3 +4,4 @@ export * from './carousel.service';
 export * from './category.service';
 export * from './jwt.service';
 export * from './job.service';
+export * from './profile.service';
