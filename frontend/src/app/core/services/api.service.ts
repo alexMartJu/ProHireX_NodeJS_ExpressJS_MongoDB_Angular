@@ -23,6 +23,9 @@ export class ApiService {
   }
 
   put(path: string, body: Object = {}): Observable<any> {
+    // console.log('POST to:', `${environment.api_url}${path}`);
+    // console.log('Body:', body);
+    // console.log('Body:', JSON.stringify(body));
     return this.http.put(
       `${environment.api_url}${path}`,
       JSON.stringify(body)
