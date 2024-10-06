@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
+import { ProfileResolver } from './profile-resolver.service';
 
 const routes: Routes = [
   {
     path: ':username',
     component: ProfileComponent,
-    resolve: {}
+    resolve: {
+      profile: ProfileResolver
+    }
   }
 ];
 
