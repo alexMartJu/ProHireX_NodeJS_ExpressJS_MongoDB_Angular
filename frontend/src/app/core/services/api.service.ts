@@ -16,6 +16,8 @@ export class ApiService {
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    // console.log('POST to:', `${environment.api_url}${path}`);
+    // console.log('Body:', params);
     return this.http.get(`${environment.api_url}${path}`, { params })
       .pipe(catchError(this.formatErrors));
   }
