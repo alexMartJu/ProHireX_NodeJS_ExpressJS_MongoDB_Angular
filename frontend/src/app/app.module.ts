@@ -11,6 +11,7 @@ import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModule } from './auth/auth.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthModule } from './auth/auth.module';
     ShopModule,
     DetailsModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
