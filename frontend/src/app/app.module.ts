@@ -12,6 +12,7 @@ import { DetailsModule } from './details/details.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProfileModule } from './profile/profile.module';
     DetailsModule,
     NgbModule,
     AuthModule,
-    ProfileModule
+    ProfileModule,
+    SettingsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
