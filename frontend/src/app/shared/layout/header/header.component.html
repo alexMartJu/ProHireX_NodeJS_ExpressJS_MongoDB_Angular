@@ -34,7 +34,7 @@
     </li>
     <li>
     <a class="nav-link"
-      [routerLink]="['/profile/me', currentUser.username]"
+      [routerLink]="['/profile', currentUser.username]"
       routerLinkActive="active">
       <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" *ngIf="currentUser.image" class="user-pic" style="width: 35px; height: 35px;" alt="user image" />
       {{ currentUser.username }}
