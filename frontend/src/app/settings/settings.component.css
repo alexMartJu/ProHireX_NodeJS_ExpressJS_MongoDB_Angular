@@ -1,0 +1,79 @@
+/* Estilos generales de la página de configuración */
+.settings-page {
+    background-color: #f8f9fa; /* Color de fondo suave */
+    padding: 40px 0; /* Espaciado superior e inferior */
+}
+
+.container.page {
+    max-width: 900px; /* Aumentar aún más el ancho máximo del contenedor */
+    margin: auto; /* Centrar el contenedor */
+}
+
+/* Título */
+h1.text-xs-center {
+    font-size: 28px; /* Aumentar el tamaño de fuente del título */
+    color: #343a40; /* Color del texto */
+    margin-bottom: 30px; /* Espaciado inferior */
+    text-align: center; /* Alinear texto al centro */
+}
+
+/* Estilo para el formulario */
+form {
+    background: white; /* Fondo blanco para el formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    padding: 40px; /* Aumentar el espaciado interno */
+}
+
+/* Estilos para los campos del formulario */
+.form-group {
+    margin-bottom: 25px; /* Aumentar el espaciado inferior */
+}
+
+.form-control {
+    height: 50px; /* Aumentar altura para los campos */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #ced4da; /* Borde gris claro */
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 12px; /* Aumentar espaciado interno */
+    transition: border-color 0.3s; /* Transición suave en el borde */
+}
+
+/* Cambios al enfocar el campo */
+.form-control:focus {
+    border-color: #80bdff; /* Color del borde al enfocar */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra al enfocar */
+}
+
+/* Estilo para el área de texto */
+textarea.form-control {
+    resize: vertical; /* Permitir redimensionar verticalmente */
+}
+
+/* Estilo para el botón de envío */
+.btn-primary {
+    background-color: #007bff; /* Color de fondo del botón */
+    border-color: #007bff; /* Color del borde del botón */
+    color: white; /* Color del texto del botón */
+    padding: 12px 24px; /* Aumentar espaciado interno del botón */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    transition: background-color 0.3s, border-color 0.3s; /* Transiciones suaves */
+    width: 100%; /* Hacer el botón ocupar el ancho completo */
+    max-width: 200px; /* Limitar el ancho máximo del botón */
+    margin: 20px auto 0; /* Centrar el botón con margen superior */
+    display: block; /* Mostrar como bloque para centrar */
+}
+
+/* Cambios al pasar el cursor sobre el botón */
+.btn-primary:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+    border-color: #0056b3; /* Color del borde al pasar el mouse */
+}
+
+/* Estilo para el botón de envío deshabilitado */
+.btn[disabled] {
+    background-color: #c6c8ca; /* Color de fondo cuando está deshabilitado */
+    border-color: #c6c8ca; /* Color del borde cuando está deshabilitado */
+    color: #495057; /* Color del texto cuando está deshabilitado */
+}
