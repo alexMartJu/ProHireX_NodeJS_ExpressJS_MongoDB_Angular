@@ -75,6 +75,29 @@ export class UserService {
   }
 
   purgeAuth() {
+    const refreshToken = this.jwtService.getRefreshToken(); // Obtén el refresh token antes de eliminarlo
+
+    if (refreshToken) {
+      // Si hay un refresh token válido, envíalo al backend para agregarlo a la blacklist
+      this.http.post<void>(`${environment.api_url}/users/logout`, { token: refreshToken })
+        .subscribe(
+          () => {
+            console.log("Refresh token added to blacklist successfully");
+            // Ahora que el refresh token ha sido blacklisted, limpiamos el estado de autenticación
+            this.completeLogout();
+          },
+          (error) => {
+            console.error("Error adding refresh token to blacklist:", error);
+            // Limpia el estado de autenticación incluso si hubo un error
+            this.completeLogout();
+          }
+        );
+    } else {
+      this.completeLogout(); // Si no hay refresh token, simplemente limpia el estado
+    }
+  }
+
+  completeLogout() {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
     this.jwtService.destroyRefreshToken();
