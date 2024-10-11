@@ -45,20 +45,37 @@ export class AuthComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
-    // this.errors = {errors: {}};
-
+  
     const credentials = this.authForm.value;
     // console.log('Sending credentials:', this.user); 
-    // console.log(this.authType);
-    this.userService
-    .attemptAuth(this.authType, credentials)
-    .subscribe(
-      data => this.router.navigateByUrl('/'),
-      err => {
-        // this.errors = err;
-        this.isSubmitting = false;
-        this.cd.markForCheck();
-      }
-    );
+    console.log(this.authType);
+  
+    if (this.authType === 'register') {
+      // Si está en modo de registro, realiza el registro y redirige al formulario de login
+      this.userService
+        .attemptAuth(this.authType, credentials)
+        .subscribe(
+          data => {
+            this.router.navigateByUrl('/auth/login');  // Redirige al login después del registro
+          },
+          err => {
+            this.isSubmitting = false;
+            this.cd.markForCheck();
+          }
+        );
+    } else if (this.authType === 'login') {
+      // Si está en modo login, inicia sesión y redirige a la página principal
+      this.userService
+        .attemptAuth(this.authType, credentials)
+        .subscribe(
+          data => {
+            this.router.navigateByUrl('/');  // Redirige a la home después de iniciar sesión
+          },
+          err => {
+            this.isSubmitting = false;
+            this.cd.markForCheck();
+          }
+        );
+    }
   }
 }

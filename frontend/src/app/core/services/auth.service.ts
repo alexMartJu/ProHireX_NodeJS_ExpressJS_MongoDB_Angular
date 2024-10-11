@@ -89,7 +89,9 @@ export class UserService {
     return this.apiService.post(`/users${route}`, {user: credentials})
       .pipe(map(
       data => {
-        this.setAuth(data.user);
+        if (type === 'login') {
+          this.setAuth(data.user);
+        }
         return data;
       }
     ));
