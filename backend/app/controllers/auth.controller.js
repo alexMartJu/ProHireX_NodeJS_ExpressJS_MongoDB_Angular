@@ -202,10 +202,35 @@ const refreshToken = asyncHandler(async (req, res) => {
     });
 });
 
+// @desc logout user and blacklist refresh token
+// @access Private
+// @required fields {token}
+// @return Success Message
+const logout = asyncHandler(async (req, res) => {
+    const { token } = req.body;  // El refresh token se envía desde el cliente
+
+    if (!token) {
+        return res.status(400).json({ message: 'Refresh token is required' });
+    }
+
+    // Buscar el token en la base de datos de refresh tokens
+    const foundToken = await RefreshToken.findOne({ token }).exec();
+    if (!foundToken) {
+        return res.status(403).json({ message: 'Invalid refresh token' });
+    }
+
+    // Agregar el refresh token a la blacklist
+    await BlacklistedToken.create({ token, userId: foundToken.userId });
+
+    // Responder con éxito
+    res.status(200).json({ message: 'Logged out successfully and token blacklisted' });
+});
+
 module.exports = {
     registerUser,
     getCurrentUser,
     userLogin,
     updateUser,
-    refreshToken
+    refreshToken,
+    logout
 }

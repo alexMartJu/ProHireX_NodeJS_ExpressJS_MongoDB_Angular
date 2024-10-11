@@ -16,4 +16,7 @@ module.exports = (app) => {
 
     // Refresh Token
     app.post('/users/refresh-token', userController.refreshToken);
+
+    // Logout --> Blacklist refresh token al hacer logout
+    app.post('/users/logout', userController.logout);
 }

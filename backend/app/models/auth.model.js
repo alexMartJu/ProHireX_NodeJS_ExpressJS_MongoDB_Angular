@@ -73,9 +73,8 @@ userSchema.methods.toUserResponse = function(accessToken = '', refreshToken = ''
         email: this.email,
         bio: this.bio,
         image: this.image,
-        token: accessToken,         // Devuelve el Access Token
+        token: accessToken,         
         refreshToken: refreshToken
-        // token: this.generateAccessToken()
     }
 };
 
