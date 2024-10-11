@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
+import { Observable ,  BehaviorSubject ,  ReplaySubject, throwError } from 'rxjs';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User } from '../models/auth.model';
-import { map ,  distinctUntilChanged } from 'rxjs/operators';
+import { map ,  distinctUntilChanged, tap, catchError, switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class UserService {
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
   constructor (
+    private http: HttpClient,
     private apiService: ApiService,
     private jwtService: JwtService
   ) {}
@@ -24,24 +27,47 @@ export class UserService {
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
-    // If JWT detected, attempt to get & store user's info
     const token = this.jwtService.getToken();
-    if (token) {
-      this.apiService.get("/user").subscribe(
-        (data) => {
-          return this.setAuth({ ...data.user, token });
-        },
-        (err) => this.purgeAuth()
-      );
+    const refreshToken = this.jwtService.getRefreshToken();
+
+    if (token && refreshToken) {
+        this.apiService.get("/user").pipe(
+            catchError(err => {
+                // Si hay un error, intenta renovar el token
+                if (err.status === 403) {
+                  console.log("Entro aqui 1");
+                    return this.refreshAccessToken().pipe(
+                        switchMap(newAccessToken => {
+                            // Si el nuevo token fue renovado correctamente, vuelve a intentar la llamada
+                            return this.apiService.get("/user");
+                        })
+                    );
+                }
+                return throwError(err);
+            })
+        ).subscribe(
+            (data) => {
+              console.log("Entro aqui 2");
+                // Asegúrate de que aquí se llame a setAuth solo después de obtener datos válidos
+                this.setAuth({ ...data.user, token: this.jwtService.getToken(), refreshToken });
+            },
+            (err) => {
+                console.error('Error al obtener el usuario:', err);
+                this.purgeAuth();
+            }
+        );
     } else {
-      // Remove any potential remnants of previous auth states
-      this.purgeAuth();
+        this.purgeAuth();
     }
-  }
+  } 
+
 
   setAuth(user: User) {
+    console.log("entro setAuth");
     // Save JWT sent from server in localstorage
     this.jwtService.saveToken(user.token);
+    console.log("access_token SetAuth: ", user.token);
+    this.jwtService.saveRefreshToken(user.refreshToken);
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
@@ -51,6 +77,7 @@ export class UserService {
   purgeAuth() {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
+    this.jwtService.destroyRefreshToken();
     // Set current user to an empty object
     this.currentUserSubject.next({} as User);
     // Set auth status to false
@@ -81,5 +108,30 @@ export class UserService {
       this.currentUserSubject.next(data.user);
       return data.user;
     }));
+  }
+
+//   refreshAccessToken() --> Solicita un nuevo Access Token utilizando el Refresh Token almacenado.
+//  Este método realiza una solicitud al servidor para obtener un nuevo Access Token
+//  basado en el Refresh Token guardado en el almacenamiento local. Si la solicitud
+//  es exitosa, el nuevo Access Token se guarda en el almacenamiento local y se devuelve
+//  para su uso posterior. Si ocurre un error, se maneja y se lanza para su gestión.
+  refreshAccessToken(): Observable<string> {
+    const refreshToken = this.jwtService.getRefreshToken();
+    console.log("refresh: ", refreshToken);
+    return this.http.post<{ accessToken: string }>(`${environment.api_url}/users/refresh-token`, { token: refreshToken })
+      .pipe(
+        tap(response => {
+          console.log('Respuesta del servidor al intentar renovar el token:', response);
+        }),
+        map(response => {
+          this.jwtService.saveToken(response.accessToken); // Guardar el nuevo Access Token
+          console.log("acccess: ",response.accessToken);
+          return response.accessToken; // Devuelve el nuevo Access Token
+        }),
+        catchError(error => {
+          console.error('Error al renovar el token:', error);
+          return throwError(error);
+        })
+      );
   }
 }
