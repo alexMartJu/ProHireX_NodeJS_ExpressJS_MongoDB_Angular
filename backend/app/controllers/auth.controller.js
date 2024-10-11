@@ -1,6 +1,9 @@
 const User = require('../models/auth.model');
 const asyncHandler = require('express-async-handler');
 const argon2 = require('argon2');
+const RefreshToken = require('../models/refreshToken.model');
+const BlacklistedToken = require('../models/blacklistedToken.model');
+const jwt = require("jsonwebtoken");
 
 // @desc registration for a user
 // @access Public
@@ -64,8 +67,29 @@ const userLogin = asyncHandler(async (req, res) => {
 
     if (!match) return res.status(401).json({ message: 'Unauthorized: Wrong password' })
 
+    // Invalida los Refresh Tokens antiguos
+    await RefreshToken.deleteMany({ userId: loginUser._id }); // Elimina tokens anteriores
+
+    // Generar un nuevo Refresh Token
+    const newRefreshToken = jwt.sign(
+        { id: loginUser._id },
+        process.env.REFRESH_TOKEN_SECRET,
+        { expiresIn: '2m' }
+    );
+
+    // Guardar el nuevo Refresh Token en la base de datos
+    await RefreshToken.create({ token: newRefreshToken, userId: loginUser._id });
+
+    // Generar un nuevo Access Token
+    const newAccessToken = jwt.sign(
+        { user: { id: loginUser._id, email: loginUser.email, password: loginUser.password } }, 
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: '1m' }
+    );
+
+
     res.status(200).json({
-        user: loginUser.toUserResponse()
+        user: loginUser.toUserResponse(newAccessToken, newRefreshToken)
     });
 
 });
@@ -76,10 +100,12 @@ const userLogin = asyncHandler(async (req, res) => {
 const getCurrentUser = asyncHandler(async (req, res) => {
     // After authentication; email and hashsed password was stored in req
     const email = req.userEmail;
+    console.log('Email recibido en getCurrentUser:', email);
 
     const user = await User.findOne({ email }).exec();
 
     if (!user) {
+        console.log('Usuario no encontrado con el email:', email);
         return res.status(404).json({message: "User Not Found"});
     }
 
@@ -128,9 +154,58 @@ const updateUser = asyncHandler(async (req, res) => {
 
 });
 
+//Refrescamos access token si refresh aun esta activo, si no esta activo se ñade a la blacklist.
+const refreshToken = asyncHandler(async (req, res) => {
+    const { token } = req.body;  // El refresh token se envía desde el cliente
+
+    console.log('Token from client:', token);
+
+    // Verificar si el refresh token está en la blacklist
+    const blacklisted = await BlacklistedToken.findOne({ token }).exec();
+    if (blacklisted) {
+        console.error('Token has been blacklisted:', token);
+        return res.status(403).json({ message: 'Token has been blacklisted' });
+    }
+
+    // Verificar si el refresh token es válido
+    const foundToken = await RefreshToken.findOne({ token }).exec();
+    if (!foundToken) {
+        console.error('Invalid refresh token:', token);
+        return res.status(403).json({ message: 'Invalid refresh token' });
+    }
+
+    // Verificar si el refresh token ha caducado o es válido
+    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
+        if (err) {
+            // Si el refresh token ha caducado, agregarlo a la blacklist y forzar logout
+            console.error('Refresh token has expired:', token);
+            await BlacklistedToken.create({ token, userId: foundToken.userId });
+            return res.status(403).json({ message: 'Refresh token has expired. Please log in again.' });
+        }
+
+        // Recuperar el usuario de la base de datos usando el userId
+        const user = await User.findById(foundToken.userId).exec();
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Si el refresh token es válido, generar un nuevo access token
+        const newAccessToken = jwt.sign(
+            { user: { id: user._id, email: user.email, password: user.password } }, // Aquí incluimos `user`
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: '1m' }
+        );
+
+        res.status(200).json({
+            accessToken: newAccessToken,  // Devolver solo el nuevo access token
+        });
+    });
+});
+
 module.exports = {
     registerUser,
     getCurrentUser,
     userLogin,
-    updateUser
+    updateUser,
+    refreshToken
 }

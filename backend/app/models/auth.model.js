@@ -61,19 +61,21 @@ userSchema.methods.generateAccessToken = function() {
             }
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1d" }
+        { expiresIn: "1m" }
     );
     return accessToken;
 }
 
-userSchema.methods.toUserResponse = function() {
+userSchema.methods.toUserResponse = function(accessToken = '', refreshToken = '') {
     return {
         uuid: this.uuid, 
         username: this.username,
         email: this.email,
         bio: this.bio,
         image: this.image,
-        token: this.generateAccessToken()
+        token: accessToken,         // Devuelve el Access Token
+        refreshToken: refreshToken
+        // token: this.generateAccessToken()
     }
 };
 

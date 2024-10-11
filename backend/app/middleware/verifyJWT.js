@@ -10,6 +10,7 @@ const verifyJWT = (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
+    console.log('Token recibido:', token); 
 
     // return res.json(token);
     jwt.verify(
@@ -17,11 +18,14 @@ const verifyJWT = (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET,
         (err, decoded) => {
             if (err) {
+                console.error('Error de verificación del token:', err.message);
                 return res.status(403).json({ message: 'Forbidden' });
             }
+            console.log('Decoded token:', decoded);
             req.userId = decoded.user.id;
             req.userEmail = decoded.user.email;
             req.userHashedPwd = decoded.user.password;
+            console.log('Email asignado a req.userEmail:', req.userEmail);
             next();
         }
     )

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit{
 
-  logged: Boolean = false;
+  logged!: Boolean;
 
   constructor(private userService: UserService,
   private cd: ChangeDetectorRef,

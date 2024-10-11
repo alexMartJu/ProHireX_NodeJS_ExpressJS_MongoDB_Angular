@@ -13,4 +13,7 @@ module.exports = (app) => {
 
     // Update User
     app.put('/user', verifyJWT, userController.updateUser);
+
+    // Refresh Token
+    app.post('/users/refresh-token', userController.refreshToken);
 }
