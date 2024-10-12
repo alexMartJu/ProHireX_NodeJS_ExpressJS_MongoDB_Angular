@@ -12,7 +12,7 @@
 <ngb-carousel *ngIf="page === 'details'" [interval]="3000" [pauseOnHover]="false" [pauseOnFocus]="false">
 	<ng-template *ngFor="let item of jobs_details;" ngbSlide >
 		<div class="contenedor" >
-			<img class="img_carousel" src="../../../{{item}}" />
+			<img class="img_carousel" src="../../..{{item}}" />
 		</div>
 	</ng-template>
 </ngb-carousel>
