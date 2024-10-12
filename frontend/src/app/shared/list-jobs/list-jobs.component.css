@@ -1,8 +1,10 @@
-.jobs{
+.jobs {
     display: flex;
+    flex-direction: column; /* Cambiamos a disposición vertical */
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap
+    gap: 20px; /* Espaciado entre las tarjetas */
+    padding: 20px;
 }
 
 .pagination{
