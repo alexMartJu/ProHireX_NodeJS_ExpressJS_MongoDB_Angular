@@ -74,7 +74,7 @@ const userLogin = asyncHandler(async (req, res) => {
     const newRefreshToken = jwt.sign(
         { id: loginUser._id },
         process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: '2m' }
+        { expiresIn: '2d' }
     );
 
     // Guardar el nuevo Refresh Token en la base de datos
@@ -84,7 +84,7 @@ const userLogin = asyncHandler(async (req, res) => {
     const newAccessToken = jwt.sign(
         { user: { id: loginUser._id, email: loginUser.email, password: loginUser.password } }, 
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: '1m' }
+    { expiresIn: '1d' }
     );
 
 
@@ -193,7 +193,7 @@ const refreshToken = asyncHandler(async (req, res) => {
         const newAccessToken = jwt.sign(
             { user: { id: user._id, email: user.email, password: user.password } }, // Aquí incluimos `user`
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '1m' }
+            { expiresIn: '1d' }
         );
 
         res.status(200).json({
