@@ -1,7 +1,8 @@
-const Job = require('../models/job.model.js'); //product x job
+const Job = require('../models/job.model.js'); 
 const Category = require('../models/category.model.js');
 const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
+const User = require('../models/auth.model.js');
 
 // CREATE JOB
 const createJob = asyncHandler(async (req, res) => { //
@@ -56,6 +57,7 @@ const findAllJob = asyncHandler(async (req, res) => { //
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
     let nameReg = new RegExp(name);
+    let favorited = transUndefined(req.query.favorited, null);
     // let favorited = transUndefined(req.query.favorited, null);
 
     query = {
@@ -67,10 +69,10 @@ const findAllJob = asyncHandler(async (req, res) => { //
         query.id_cat = category;
     }
 
-    // if (favorited) {
-    //     const favoriter = await User.findOne({ username: favorited });
-    //     query._id = { $in: favoriter.favorites };
-    // }
+    if (favorited) {
+        const favoriter = await User.findOne({ username: favorited });
+        query._id = { $in: favoriter.favorites };
+    }
 
     const jobs = await Job.find(query).limit(Number(limit)).skip(Number(offset)); 
     const job_count = await Job.find(query).countDocuments(); 
@@ -80,9 +82,11 @@ const findAllJob = asyncHandler(async (req, res) => { //
         res.status(404).json({ msg: "Falló" });
     }
 
+    const user = await User.findById(req.userId);
+
     return res.status(200).json({
         jobs: await Promise.all(jobs.map(async job => { 
-            return await job.toJobResponse();
+            return await job.toJobResponse(user);
         })), job_count: job_count 
     });
 });
@@ -91,6 +95,7 @@ const findAllJob = asyncHandler(async (req, res) => { //
 const findOneJob = asyncHandler(async (req, res) => { 
 
     const jobs = await Job.findOne(req.params) 
+    const user = await User.findById(req.userId);
 
     if (!jobs) { 
         return res.status(401).json({
@@ -98,7 +103,7 @@ const findOneJob = asyncHandler(async (req, res) => {
         });
     }
     return res.status(200).json({
-        jobs: await jobs.toJobResponse()
+        jobs: await jobs.toJobResponse(user)
     })
 });
 
@@ -150,8 +155,10 @@ const GetJobsByCategory = asyncHandler(async (req, res) => {
                           .limit(limit)   // Aplicamos el límite por página
                           .exec();
 
+    const user = await User.findById(req.userId);
+
     const jobResponses = await Promise.all(jobs.map(async (jobObj) => {
-        return await jobObj.toJobResponse(); 
+        return await jobObj.toJobResponse(user); 
     }));
 
     return res.status(200).json({
@@ -196,11 +203,80 @@ const updateJob = asyncHandler(async (req, res) => {
     })
 });
 
+// favouriteJob --> El usuario autenticado (loginUser) añade un trabajo identificado por 'slug' a su lista de trabajos favoritos.
+// Después de marcarlo como favorito, se actualiza el contador de favoritos del trabajo y 
+// se devuelve la respuesta del trabajo actualizado.
+const favouriteJob = asyncHandler(async (req, res) => {
+    const id = req.userId; // ID del usuario autenticado
+
+    const { slug } = req.params; // 'slug' del trabajo
+
+    const loginUser = await User.findById(id).exec(); // Buscar al usuario por ID
+
+    if (!loginUser) {
+        return res.status(401).json({
+            message: "User Not Found"
+        });
+    }
+
+    const job = await Job.findOne({slug}).exec(); // Buscar el trabajo por 'slug'
+
+    if (!job) {
+        return res.status(401).json({
+            message: "Job Not Found"
+        });
+    }
+    // console.log(`job info ${job}`);
+
+    await loginUser.favorite(job._id); // Añadir el trabajo a la lista de favoritos del usuario
+
+    const updatedJob = await job.updateFavoriteCount(); // Actualizar el contador de favoritos del trabajo
+
+    return res.status(200).json({
+        job: await updatedJob.toJobResponse(loginUser) // Devolver el trabajo actualizado con la información de favoritos
+    });
+});
+
+// unfavoriteJob --> El usuario autenticado (loginUser) elimina un trabajo identificado por 'slug' de su lista de trabajos favoritos.
+// Después de eliminarlo de favoritos, se actualiza el contador de favoritos del trabajo y 
+// se devuelve la respuesta del trabajo actualizado.
+const unfavoriteJob = asyncHandler(async (req, res) => {
+    const id = req.userId; // ID del usuario autenticado
+
+    const { slug } = req.params; // 'slug' del trabajo
+
+    const loginUser = await User.findById(id).exec(); // Buscar al usuario por ID
+
+    if (!loginUser) {
+        return res.status(401).json({
+            message: "User Not Found"
+        });
+    }
+
+    const job = await Job.findOne({slug}).exec(); // Buscar el trabajo por 'slug'
+
+    if (!job) {
+        return res.status(401).json({
+            message: "Job Not Found"
+        });
+    }
+
+    await loginUser.unfavorite(job._id); // Eliminar el trabajo de la lista de favoritos del usuario
+
+    await job.updateFavoriteCount(); // Actualizar el contador de favoritos del trabajo
+
+    return res.status(200).json({
+        job: await job.toJobResponse(loginUser) // Devolver el trabajo actualizado con la información de favoritos
+    });
+});
+
 module.exports = { 
     createJob, 
     findAllJob,
     findOneJob,
     deleteOneJob,
     GetJobsByCategory,
-    updateJob
-}
+    updateJob,
+    favouriteJob,
+    unfavoriteJob
+} 
