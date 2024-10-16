@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const slugify = require('slugify');
 const uniqueValidator = require('mongoose-unique-validator');
 const { log } = require('console');
+const User = require('../models/auth.model.js');
 
 const JobSchema = mongoose.Schema({
     slug: { 
@@ -45,7 +46,19 @@ const JobSchema = mongoose.Schema({
     requirements: { 
         type: String,
         required: true 
-    }
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    favoritesCount: {
+        type: Number,
+        default: 0
+    },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
 
 
@@ -66,6 +79,8 @@ JobSchema.methods.slugify = async function () {
 
 JobSchema.methods.toJobResponse = async function  (user) { 
 
+    const authorObj = await User.findById(this.author).exec();
+
     if (user !== null) {
         // return "hay usuario"
         return {
@@ -79,7 +94,10 @@ JobSchema.methods.toJobResponse = async function  (user) {
             company_name: this.company_name,    
             published_at: this.published_at,    
             location: this.location,
-            requirements: this.requirements
+            requirements: this.requirements,
+            favorited: user ? user.isFavorite(this._id) : false,
+            favoritesCount: this.favoritesCount,
+            author: authorObj ? authorObj.toProfileJSON(user) : null
         }
     } else {
         // return "no hay usuario"
@@ -94,7 +112,10 @@ JobSchema.methods.toJobResponse = async function  (user) {
             company_name: this.company_name,    
             published_at: this.published_at,    
             location: this.location,
-            requirements: this.requirements
+            requirements: this.requirements,
+            favorited: false,
+            favoritesCount: this.favoritesCount,
+            author:  authorObj ? authorObj.toProfileJSON(user) : null
             
         }
     }
@@ -106,4 +127,34 @@ JobSchema.methods.toJobCarouselResponse = async function () {
     }
 }
 
-module.exports = mongoose.model('Job', JobSchema); //
+// Añadir un comentario al trabajo
+JobSchema.methods.addComment = function (commentId) { 
+    // Si el comentario no está ya en la lista de comentarios, lo añade
+    if(this.comments.indexOf(commentId) === -1){
+        this.comments.push(commentId); // Añadir el ID del comentario a la lista
+    }
+    return this.save(); // Guardar los cambios en la base de datos
+};
+
+// Eliminar un comentario del trabajo
+JobSchema.methods.removeComment = function (commentId) {
+    // Si el comentario está en la lista de comentarios, lo elimina
+    if(this.comments.indexOf(commentId) !== -1){
+        this.comments.remove(commentId); // Eliminar el ID del comentario de la lista
+    }
+    return this.save(); // Guardar los cambios en la base de datos
+};
+
+// Actualizar el contador de favoritos del trabajo
+JobSchema.methods.updateFavoriteCount = async function () {
+    // Cuenta cuántos usuarios han añadido este trabajo a su lista de favoritos
+    const favoriteCount = await User.count({
+        favouriteJobs: {$in: [this._id]} // Busca usuarios que tengan este trabajo en su lista de favoritos
+    });
+
+    this.favoritesCount = favoriteCount; // Actualiza el número de favoritos del trabajo
+
+    return this.save(); // Guardar los cambios en la base de datos
+}
+
+module.exports = mongoose.model('Job', JobSchema); 
