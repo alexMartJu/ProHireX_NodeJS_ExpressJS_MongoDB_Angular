@@ -1,3 +1,5 @@
+import { Profile } from "./profile.model"; //añadido
+
 export interface Job {
     slug: string;
     name: string;
@@ -10,4 +12,7 @@ export interface Job {
     published_at: Date;        
     location: string;          
     requirements: string;
+    favorited: boolean;  //añadido de aqui hacia abajo
+    favoritesCount: number;
+    author: Profile;
 }

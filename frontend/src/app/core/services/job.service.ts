@@ -7,6 +7,7 @@ import { Filters } from '../models/filters.model';
 
 const URL = `${environment.api_url}/jobs`;
 const URLcat = `${environment.api_url}/categories`;
+const URLfav = `${environment.api_url}`;
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,13 @@ export class JobService {
         return data;
         })
     );
+  }
+
+  favorite(slug: String): Observable<any> {
+    return this.http.post(`${URLfav}/${slug}/favorite`, {})
+  }
+
+  unfavorite(slug: String): Observable<any> {
+    return this.http.delete(`${URLfav}/${slug}/favorite`)
   }
 }
