@@ -5,3 +5,4 @@ export * from './category.service';
 export * from './jwt.service';
 export * from './job.service';
 export * from './profile.service';
+export * from './comments.service';
