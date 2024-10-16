@@ -1,0 +1,107 @@
+/* Contenedor general para comentarios */
+.comment-container {
+    max-width: 800px; /* Ancho máximo para igualar al profile-page */
+    margin: 20px auto; /* Centrar el contenedor */
+}
+
+/* General comment styles */
+.comment {
+    background-color: #f2f2f2;
+    border: 2px solid #dfdfdf;
+    margin: 10px 0;
+    padding: 20px;
+    position: relative;
+    min-height: 150px;
+    transition: box-shadow 0.3s ease; /* Efecto de sombra en hover */
+}
+
+.comment:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Avatar container */
+.comment-avatar-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding: 20px; /* Padding para separar el avatar del borde */
+}
+
+/* Avatar styling */
+.comment-avatar {
+    width: 100px; /* Ancho por defecto */
+    height: 100px; /* Alto por defecto */
+    border-radius: 50%; /* Hacer que el avatar sea circular */
+    overflow: hidden; /* Esconde el desbordamiento */
+    border: 3px solid #219ebc;
+    box-shadow: 0 2px 2px rgba(0,0,0, 0.2);
+}
+
+/* Title and text styling */
+.comment-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 120px; /* Espacio para el avatar */
+}
+
+.comment-text {
+    padding-top: 10px;
+    margin: 0;
+    padding-left: 120px; /* Espacio para el avatar */
+}
+
+/* Timestamp for comments */
+.comment-time-stamp {
+    position: absolute;
+    bottom: 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #434343;
+    opacity: 0.6;
+    left: 120px; /* Espacio para el avatar */
+}
+
+/* Delete icon styling */
+.comment-delete-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 15px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 576px) {
+    .comment-avatar-container {
+        width: 100px; /* Ajustar tamaño para móviles */
+    }
+    
+    .comment-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .comment-title,
+    .comment-text {
+        padding-left: 90px; /* Ajuste para espacio del avatar */
+    }
+}
+
+@media screen and (min-width: 577px) {
+    .comment-avatar-container {
+        width: 150px; /* Ancho para pantallas medianas */
+    }
+
+    .comment-title,
+    .comment-text {
+        padding-left: 140px; /* Ajuste para espacio del avatar */
+    }
+}
+
+@media screen and (min-width: 993px) {
+    .comment-avatar-container {
+        width: 150px; /* Ancho para pantallas grandes */
+    }
+}

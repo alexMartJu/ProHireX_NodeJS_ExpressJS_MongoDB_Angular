@@ -1,0 +1,20 @@
+<div class="comment-container">
+    <div *ngIf="pages_profile === 'followers'">	
+        <div class="comment initial">
+            <div class="comment-avatar-container">  
+                <img class="comment-avatar" src="{{followersss.image}}"/>
+            </div>
+            <h2 class="comment-title">Author: {{ followersss.username }}</h2>
+            <p class="comment-text">{{ followersss.bio }}</p>
+        </div> 
+    </div>
+    <div *ngIf="pages_profile === 'follows'">	
+        <div class="comment initial">
+            <div class="comment-avatar-container">  
+                <img class="comment-avatar" src="{{follow.image}}"/>
+            </div>
+            <h2 class="comment-title">Author: {{ follow.username }}</h2>
+            <p class="comment-text">{{ follow.bio }}</p>
+        </div> 
+    </div> 
+</div>

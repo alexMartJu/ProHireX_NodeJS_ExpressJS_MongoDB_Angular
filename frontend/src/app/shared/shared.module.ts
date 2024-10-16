@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { FavoriteButtonComponent } from './buttons/favorite-button.component';
 import { FollowButtonComponent } from './buttons/follow-button.component';
+import { FollowListComponent } from './follow-list/follow-list.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FollowButtonComponent } from './buttons/follow-button.component';
     FiltersComponent,
     SearchComponent,
     FavoriteButtonComponent,
-    FollowButtonComponent
+    FollowButtonComponent,
+    FollowListComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { FollowButtonComponent } from './buttons/follow-button.component';
       SearchComponent,
       ReactiveFormsModule,
       FavoriteButtonComponent,
-      FollowButtonComponent
+      FollowButtonComponent,
+      FollowListComponent
   ],
 })
 export class SharedModule { }
