@@ -1,0 +1,68 @@
+/* Estilos generales del botón */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+/* Estilo de los íconos dentro del botón */
+.btn i {
+    margin-right: 8px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+/* Estilo para el botón cuando no está siguiendo (Follow) */
+.btn-outline-secondary {
+    background-color: #fff;
+    border: 2px solid #6c757d;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-outline-secondary i {
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover i {
+    color: #fff;
+}
+
+/* Estilo para el botón cuando está siguiendo (Unfollow) */
+.btn-secondary {
+    background-color: #343a40;
+    border: 2px solid #343a40;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #212529;
+}
+
+.btn-secondary i {
+    color: #fff;
+}
+
+/* Estilo cuando el botón está deshabilitado */
+.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.disabled i {
+    color: #ccc;
+}

@@ -13,6 +13,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { FavoriteButtonComponent } from './buttons/favorite-button.component';
+import { FollowButtonComponent } from './buttons/follow-button.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FavoriteButtonComponent } from './buttons/favorite-button.component';
     CarouselItemsComponent,
     FiltersComponent,
     SearchComponent,
-    FavoriteButtonComponent
+    FavoriteButtonComponent,
+    FollowButtonComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { FavoriteButtonComponent } from './buttons/favorite-button.component';
       FiltersComponent,
       SearchComponent,
       ReactiveFormsModule,
-      FavoriteButtonComponent
+      FavoriteButtonComponent,
+      FollowButtonComponent
   ],
 })
 export class SharedModule { }
