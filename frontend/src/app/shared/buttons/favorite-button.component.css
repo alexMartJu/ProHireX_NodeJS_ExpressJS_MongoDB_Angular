@@ -1,0 +1,67 @@
+/* Estilos generales del botón */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los íconos dentro del botón */
+.btn i {
+    margin-right: 8px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+/* Estilo para el botón cuando no está marcado como favorito */
+.btn-outline-primary {
+    background-color: #fff;
+    border: 2px solid #007bff;
+    color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-outline-primary i {
+    color: #007bff;
+}
+
+.btn-outline-primary:hover i {
+    color: #fff;
+}
+
+/* Estilo para el botón cuando está marcado como favorito */
+.btn-primary {
+    background-color: #ff5252;
+    border: 2px solid #ff5252;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #ff3030;
+}
+
+.btn-primary i {
+    color: #fff;
+}
+
+/* Estilo cuando el botón está deshabilitado */
+.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.disabled i {
+    color: #ccc;
+}

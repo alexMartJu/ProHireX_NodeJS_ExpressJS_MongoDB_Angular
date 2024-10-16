@@ -12,6 +12,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
+import { FavoriteButtonComponent } from './buttons/favorite-button.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchComponent } from './search/search.component';
     CarouselComponent,
     CarouselItemsComponent,
     FiltersComponent,
-    SearchComponent
+    SearchComponent,
+    FavoriteButtonComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { SearchComponent } from './search/search.component';
       CarouselComponent,
       FiltersComponent,
       SearchComponent,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      FavoriteButtonComponent
   ],
 })
 export class SharedModule { }

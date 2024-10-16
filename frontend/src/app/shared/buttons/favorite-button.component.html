@@ -1,0 +1,7 @@
+<button class="btn btn-sm"
+ [ngClass]="{ 'disabled' : isSubmitting,
+              'btn-outline-primary': !jobs.favorited,
+              'btn-primary': jobs.favorited }"
+ (click)="toggleFavorite()">
+ <i class="bi bi-heart"></i> <ng-content></ng-content>
+</button>
