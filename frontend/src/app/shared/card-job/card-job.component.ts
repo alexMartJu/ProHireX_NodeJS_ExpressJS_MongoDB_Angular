@@ -13,4 +13,14 @@ export class CardJobComponent {
   constructor() { }
 
   ngOnInit(): void {}
+
+  onToggleFavorite(favorited: boolean) {
+    this.job.favorited = favorited;
+
+    if (favorited) {
+      this.job.favoritesCount++;
+    } else {
+      this.job.favoritesCount--;
+    }
+  }
 }
