@@ -5,11 +5,13 @@ import { DetailsRoutingModule } from './details-routing.module';
 import { DetailsComponent } from './details.component';
 
 import { SharedModule } from '../shared';
+import { DetailsCommentComponent } from './details-comment.component';
 
 
 @NgModule({
   declarations: [
-    DetailsComponent
+    DetailsComponent,
+    DetailsCommentComponent
   ],
   imports: [
     CommonModule,

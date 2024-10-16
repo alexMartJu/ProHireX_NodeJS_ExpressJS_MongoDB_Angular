@@ -1,0 +1,83 @@
+/* Estilo base para la tarjeta */
+.card {
+    background-color: #ffffff; /* Color de fondo blanco */
+    border: 1px solid #e0e0e0; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 20px 0; /* Espacio entre tarjetas */
+    overflow: hidden; /* Evitar desbordamientos */
+    transition: transform 0.2s; /* Animación suave al pasar el mouse */
+}
+
+/* Efecto al pasar el mouse sobre la tarjeta */
+.card:hover {
+    transform: translateY(-5px); /* Levantar tarjeta al pasar el mouse */
+}
+
+/* Bloque de contenido de la tarjeta */
+.card-block {
+    padding: 20px; /* Espaciado interno */
+}
+
+/* Texto del comentario */
+.card-text {
+    font-size: 16px; /* Tamaño de fuente */
+    color: #333; /* Color de texto oscuro */
+    line-height: 1.5; /* Altura de línea */
+    margin: 0; /* Sin margen */
+}
+
+/* Pie de tarjeta */
+.card-footer {
+    display: flex; /* Uso de flexbox */
+    align-items: center; /* Alineación vertical */
+    padding: 10px 20px; /* Espaciado interno */
+    background-color: #f8f8f8; /* Color de fondo gris claro */
+    border-top: 1px solid #e0e0e0; /* Borde superior */
+}
+
+/* Imagen del autor */
+.comment-author-img {
+    width: 40px; /* Ancho fijo para la imagen */
+    height: 40px; /* Alto fijo para la imagen */
+    border-radius: 50%; /* Redondear imagen */
+    object-fit: cover; /* Ajustar imagen dentro del contenedor */
+}
+
+/* Enlace del autor */
+.comment-author {
+    text-decoration: none; /* Sin subrayado */
+    color: #007bff; /* Color azul */
+    font-weight: bold; /* Negrita */
+    margin-left: 10px; /* Espaciado entre imagen y texto */
+}
+
+/* Color del enlace al pasar el mouse */
+.comment-author:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+/* Fecha de publicación */
+.date-posted {
+    color: #888; /* Color gris para la fecha */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    margin-left: auto; /* Empujar a la derecha */
+}
+
+/* Opciones de modificación */
+.mod-options {
+    cursor: pointer; /* Cambiar cursor a puntero */
+    margin-left: 10px; /* Espaciado */
+    color: #dc3545; /* Color rojo */
+}
+
+/* Icono de eliminar */
+.mod-options .bi-trash {
+    font-size: 18px; /* Tamaño del icono */
+    transition: color 0.2s; /* Animación suave para color */
+}
+
+/* Cambiar color del icono al pasar el mouse */
+.mod-options .bi-trash:hover {
+    color: #c82333; /* Color más oscuro al pasar el mouse */
+}
