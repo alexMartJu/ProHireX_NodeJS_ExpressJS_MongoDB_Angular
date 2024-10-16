@@ -1,0 +1,16 @@
+<div class="container-fluid row" class="product" *ngIf="jobs">
+    <div class="prueba2">
+        <div class="col-md-3 col-10 mt-5 tarjeta">
+            <div class="card mx-auto prueba">
+                <img class="mx-auto" style="margin-top: 10px" src="{{jobs.img}}" width="200px" height="200px"/>
+                <div class="card-body text-center mx-auto">
+                    <div class='cvp'>
+                        <h5 class="card-title font-weight-bold">{{jobs.name}}</h5>
+                        <p class="card-text">{{jobs.price}}€</p>
+                        <a class="btn details px-auto" [routerLink]="['/details/', jobs.slug]">View Details</a><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

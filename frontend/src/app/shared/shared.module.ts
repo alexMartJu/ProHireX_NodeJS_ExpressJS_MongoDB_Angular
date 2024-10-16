@@ -15,6 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { FavoriteButtonComponent } from './buttons/favorite-button.component';
 import { FollowButtonComponent } from './buttons/follow-button.component';
 import { FollowListComponent } from './follow-list/follow-list.component';
+import { ListJobsOnProfileComponent } from './list-jobs-on-profile/list-jobs-on-profile.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FollowListComponent } from './follow-list/follow-list.component';
     SearchComponent,
     FavoriteButtonComponent,
     FollowButtonComponent,
-    FollowListComponent
+    FollowListComponent,
+    ListJobsOnProfileComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { FollowListComponent } from './follow-list/follow-list.component';
       ReactiveFormsModule,
       FavoriteButtonComponent,
       FollowButtonComponent,
-      FollowListComponent
+      FollowListComponent,
+      ListJobsOnProfileComponent
   ],
 })
 export class SharedModule { }
