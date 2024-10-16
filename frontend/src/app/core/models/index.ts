@@ -5,3 +5,4 @@ export * from './filters.model';
 export * from './job.model';
 export * from './profile.model';
 export * from './comments.model';
+export * from './follower-follow.model';
