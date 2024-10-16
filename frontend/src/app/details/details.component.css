@@ -70,6 +70,85 @@ hr {
     margin: 20px 0;
 }
 
+/* Estilo general para el formulario de comentarios */
+.comment-form {
+    background-color: #f9f9f9; /* Color de fondo suave */
+    border: 1px solid #e3e3e3; /* Borde suave */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin: 20px 0; /* Espaciado vertical */
+    padding: 20px; /* Espaciado interno */
+}
+
+/* Estilo para el textarea */
+.form-control {
+    border: 1px solid #ced4da; /* Borde suave */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1rem; /* Tamaño de fuente */
+    padding: 10px; /* Espaciado interno */
+    transition: border-color 0.3s; /* Transición suave para el borde */
+    width: 100%; /* Ancho completo */
+}
+
+.form-control::placeholder {
+    color: #aaa; /* Color del texto del placeholder */
+    opacity: 1; /* Opacidad del placeholder */
+}
+
+/* Efecto al enfocar el textarea */
+.form-control:focus {
+    border-color: #219ebc; /* Color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(33, 158, 188, 0.5); /* Sombra suave al enfocar */
+}
+
+/* Estilo para el contenedor de la imagen del autor y el botón */
+.card-footer {
+    display: flex; /* Flexbox para alinear elementos */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: space-between; /* Espaciado entre elementos */
+}
+
+/* Estilo para la imagen del autor */
+.comment-author-img {
+    width: 40px; /* Ancho de la imagen */
+    height: 40px; /* Alto de la imagen */
+    border-radius: 50%; /* Bordes redondeados (circular) */
+    object-fit: cover; /* Recortar la imagen para que encaje */
+}
+
+/* Estilo para el botón de enviar comentario */
+.btn-primary {
+    background-color: #219ebc; /* Color de fondo del botón */
+    border-color: #219ebc; /* Color del borde del botón */
+    color: white; /* Color del texto */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+.btn-primary:hover {
+    background-color: #1a7c9c; /* Color más oscuro al pasar el ratón */
+    border-color: #1a7c9c; /* Cambiar borde */
+}
+
+/* Estilos para la sección de mensajes de inicio de sesión */
+.text-muted {
+    color: #888; /* Color de texto atenuado */
+    font-size: 1rem; /* Tamaño de fuente */
+    margin: 10px 0; /* Espaciado vertical */
+}
+
+/* Estilo para los comentarios */
+.app-details-comment {
+    border-bottom: 1px solid #e3e3e3; /* Línea de separación */
+    padding: 10px 0; /* Espaciado vertical */
+}
+
+.app-details-comment:last-child {
+    border: none; /* Quitar la línea de separación del último comentario */
+}
+
 /* Responsividad para pantallas más pequeñas */
 @media (max-width: 576px) {
     .details_page {
@@ -91,5 +170,21 @@ hr {
 
     .section-title::after {
         width: 40px; /* Ajuste del subrayado en pantallas pequeñas */
+    }
+
+    .comment-form {
+        padding: 15px; /* Ajustar espaciado interno */
+    }
+
+    .form-control {
+        font-size: 0.9rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+    }
+
+    .btn-primary {
+        font-size: 0.9rem; /* Tamaño de fuente del botón más pequeño */
+    }
+
+    .text-muted {
+        font-size: 0.9rem; /* Tamaño de fuente más pequeño para mensajes de inicio de sesión */
     }
 }

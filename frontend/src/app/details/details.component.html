@@ -40,7 +40,51 @@
                     <p><strong>Localidad:</strong> {{ job.location }}</p>
                     <p><strong>Fecha de Publicación:</strong> {{ job.published_at }}</p>
                 </div>
+
+                <span [hidden]="canModify">
+                    <app-follow-button *ngIf="job.author" [profile]="job.author" (toggle)="onToggleFollowing($event)">
+                    </app-follow-button>
+
+                    <app-favorite-button [jobs]="job" (toggle)="onToggleFavorite($event)">
+                        {{ job.favorited ? 'Unfavorite' : 'Favorite' }} Job <span class="counter">({{ job.favoritesCount
+                            }})</span>
+                    </app-favorite-button>
+                </span>
             </div>
         </div>
+    </div>
+</div>
+<!-- Contenedor separado para el formulario y los comentarios -->
+<div class="container mt-5 mb-5">
+    <div class="row details_page card shadow p-4">
+
+        <div *ngIf="logged === true">
+            <h4 class="section-title">Comentarios</h4>
+            <form class="card comment-form" (ngSubmit)="addComment()">
+                <fieldset [disabled]="isSubmitting">
+                    <div class="card-block">
+                        <textarea class="form-control" placeholder="Write a comment..." rows="3"
+                            [formControl]="commentControl"></textarea>
+                    </div>
+                    <div class="card-footer">
+                        <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'"
+                            alt="user image" class="comment-author-img" />
+                        <button class="btn btn-sm btn-primary" type="button" (click)="addComment()">
+                            Post Comment
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div *ngIf="logged === false">
+            <a [routerLink]="['/auth/login']">Sign in</a> or <a [routerLink]="['/auth/register']">sign up</a> to add
+            comments on this article.
+        </div>
+
+        <app-details-comment *ngFor="let comment of comments; trackBy: trackByFn" [comment]="comment"
+            (deleteComment)="onDeleteComment(comment)">
+        </app-details-comment>
+
     </div>
 </div>
