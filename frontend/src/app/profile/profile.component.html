@@ -51,7 +51,7 @@
 <div class="row" *ngIf="pages_profile === 'jobs'">
   <h1>Tus trabajos</h1>
   <div *ngIf="jobs.length > 0; else noJobs">
-    <app-list-products-on-profile *ngFor="let job of jobs" [jobs]="job"></app-list-products-on-profile>
+    <app-list-jobs-on-profile *ngFor="let job of jobs" [jobs]="job"></app-list-jobs-on-profile>
   </div>
   <ng-template #noJobs>
     <p>Este usuario no ha creado ningún trabajo todavía.</p>
