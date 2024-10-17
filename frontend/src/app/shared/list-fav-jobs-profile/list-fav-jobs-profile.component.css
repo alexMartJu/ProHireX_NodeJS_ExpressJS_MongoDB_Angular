@@ -1,0 +1,27 @@
+/* Asegura que todas las tarjetas ocupen el 100% del ancho disponible */
+.card-job {
+    width: 100%;
+    max-width: 100%; /* Limita el ancho al contenedor */
+    display: flex;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-job:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen siempre a la izquierda y ajustada a la altura de la tarjeta */
+.img-fluid {
+    object-fit: cover;
+    height: 100%;
+}
+
+/* Ajustes de márgenes y rellenos para asegurar el espaciado correcto */
+.container {
+    padding: 0;
+}
+
+.h-100 {
+    height: 100%;
+}

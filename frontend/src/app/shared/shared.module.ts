@@ -16,6 +16,7 @@ import { FavoriteButtonComponent } from './buttons/favorite-button.component';
 import { FollowButtonComponent } from './buttons/follow-button.component';
 import { FollowListComponent } from './follow-list/follow-list.component';
 import { ListJobsOnProfileComponent } from './list-jobs-on-profile/list-jobs-on-profile.component';
+import { ListFavJobsProfileComponent } from './list-fav-jobs-profile/list-fav-jobs-profile.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ListJobsOnProfileComponent } from './list-jobs-on-profile/list-jobs-on-
     FavoriteButtonComponent,
     FollowButtonComponent,
     FollowListComponent,
-    ListJobsOnProfileComponent
+    ListJobsOnProfileComponent,
+    ListFavJobsProfileComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { ListJobsOnProfileComponent } from './list-jobs-on-profile/list-jobs-on-
       FavoriteButtonComponent,
       FollowButtonComponent,
       FollowListComponent,
-      ListJobsOnProfileComponent
+      ListJobsOnProfileComponent,
+      ListFavJobsProfileComponent
   ],
 })
 export class SharedModule { }
