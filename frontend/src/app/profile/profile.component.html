@@ -1,20 +1,72 @@
 <div class="profile-page">
 
-    <div class="user-info">
-      <div class="container">
-        <div class="row">
-  
-          <div class="col-xs-12 col-md-10 offset-md-1">
-            <img [src]="profile.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" alt="user image"
-              class="user-img" />
-            <h4>{{ profile.username }}</h4>
-            <p>{{ profile.bio }}</p>
-            <a [routerLink]="['/settings']" [hidden]="!isUser" class="btn btn-sm btn-outline-secondary action-btn">
-              <i class="ion-gear-a"></i> Edit Profile Settings
-            </a>
-          </div>
-  
+  <div class="user-info">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <img [src]="profile.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" alt="user image"
+            class="user-img" />
+          <h4>{{ profile.username }}</h4>
+          <p>{{ profile.bio }}</p>
+          <app-follow-button [hidden]="isUser" [profile]="profile" (toggle)="onToggleFollowing($event)">
+          </app-follow-button>
+          <a [routerLink]="['/settings']" [hidden]="!isUser" class="btn btn-sm btn-outline-secondary action-btn">
+            <i class="bi bi-gear"></i> Edit Profile Settings
+          </a>
+          <ul class="flex-menu">
+            <li (click)="change_followers()"><strong>{{profile_user.n_followers}}</strong> Followers</li>
+            <li (click)="change_follows()"><strong>{{profile_user.n_follows}}</strong> Following</li>
+            <li (click)="change_products()"> Trabajos</li>
+            <li (click)="change_favorites()"> Favoritos</li>
+          </ul>
         </div>
+
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="pages_profile === 'followers'">
+  <h1>Seguidores</h1>
+  <div *ngIf="followers.length > 0; else nofollowers">
+    <app-follow-list *ngFor="let follower of followers" [followersss]="follower"
+      [pages_profile]="pages_profile"></app-follow-list>
+  </div>
+  <ng-template #nofollowers>
+    <p class="follow">Este usuario no tiene seguidores todavía.</p>
+  </ng-template>
+</div>
+
+<div *ngIf="pages_profile === 'follows'">
+  <h1>Siguiendo</h1>
+  <div *ngIf="follows.length > 0; else nofollows">
+    <app-follow-list *ngFor="let follow of follows" [follow]="follow" [pages_profile]="pages_profile"></app-follow-list>
+  </div>
+  <ng-template #nofollows>
+    <p class="follow">Este usuario no está siguiendo a nadie todavía.</p>
+  </ng-template>
+</div>
+
+<div class="row" *ngIf="pages_profile === 'jobs'">
+  <h1>Tus trabajos</h1>
+  <div *ngIf="jobs.length > 0; else noJobs">
+    <app-list-products-on-profile *ngFor="let job of jobs" [jobs]="job"></app-list-products-on-profile>
+  </div>
+  <ng-template #noJobs>
+    <p>Este usuario no ha creado ningún trabajo todavía.</p>
+  </ng-template>
+</div>
+
+<div *ngIf="pages_profile === 'favorites'">
+  <h1>Tus Trabajos Favoritos</h1>
+  <div class="product-list">
+    <div *ngIf="favouriteJobs.length > 0; else nofavouriteJobs">
+      <app-list-fav-jobs-profile *ngFor="let job of favouriteJobs" [job]="job"
+        [isUser]="isUser"></app-list-fav-jobs-profile>
+    </div>
+    <ng-template #nofavouriteJobs>
+      <p>Este usuario no tiene trabajos favoritos.</p>
+    </ng-template>
+  </div>
+</div>
