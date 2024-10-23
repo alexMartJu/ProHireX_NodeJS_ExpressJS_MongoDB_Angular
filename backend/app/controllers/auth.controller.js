@@ -18,6 +18,18 @@ const registerUser = asyncHandler(async (req, res) => {
         return res.status(400).json({message: "All fields are required"});
     }
 
+    // Comprobar si el correo ya está en uso
+    const existingUser = await User.findOne({ email: user.email });
+    if (existingUser) {
+        return res.status(400).json({ message: "Email already in use" });
+    }
+
+    // Comprobar si el nombre de usuario ya está en uso
+    const existingUsernameUser = await User.findOne({ username: user.username });
+    if (existingUsernameUser) {
+        return res.status(400).json({ message: "Username already in use" });
+    }
+
     // hash password
     const hashedPwd = await argon2.hash(user.password, 10); // salt rounds
 

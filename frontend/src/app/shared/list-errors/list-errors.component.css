@@ -1,0 +1,38 @@
+.error-messages {
+  list-style: none; /* Elimina el estilo de lista predeterminado */
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+  border: 1px solid #e74c3c; /* Borde rojo para el contenedor */
+  background-color: #fff3f3; /* Fondo claro con un tono rojo */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  max-width: 400px; /* Ancho máximo del contenedor */
+  margin: 10px auto; /* Centrar el contenedor */
+  padding: 15px; /* Espaciado interno */
+  font-family: Arial, sans-serif; /* Fuente de texto */
+  font-size: 14px;
+}
+
+.error-messages li {
+  color: #e74c3c; /* Color del texto rojo */
+  padding: 8px 0; /* Espaciado entre los elementos de la lista */
+  display: flex; /* Usar flexbox para alinear el icono y el texto */
+  align-items: center; /* Centrar verticalmente el contenido */
+}
+
+.error-messages li:not(:last-child) {
+  border-bottom: 1px solid #e74c3c; /* Línea separadora entre errores */
+}
+
+.error-messages li::before {
+  content: "⚠️"; /* Icono de advertencia */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+  font-size: 18px; /* Tamaño del icono */
+  color: #e74c3c; /* Color del icono */
+}
+
+@media (max-width: 480px) {
+  .error-messages {
+      max-width: 90%; /* Ancho del contenedor para dispositivos pequeños */
+  }
+}

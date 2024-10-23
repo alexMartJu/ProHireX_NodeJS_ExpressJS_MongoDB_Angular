@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../core/services/auth.service';
 import Swal from 'sweetalert2';
+import { Errors } from '../core';
 
 @Component({
   selector: 'app-auth',
@@ -15,6 +16,7 @@ export class AuthComponent implements OnInit {
   isSubmitting = false;
   authForm: FormGroup;
   user!: any;
+  errors: Errors = {errors: {}};
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +48,7 @@ export class AuthComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
+    this.errors = {errors: {}};
   
     const credentials = this.authForm.value;
     // console.log('Sending credentials:', this.user); 
@@ -68,6 +71,7 @@ export class AuthComponent implements OnInit {
             });
           },
           err => {
+            this.errors = { errors: { Error: err.message } };
             this.isSubmitting = false;
             this.cd.markForCheck();
           }
@@ -89,6 +93,8 @@ export class AuthComponent implements OnInit {
             });
           },
           err => {
+            console.log('Error recibido:', err);
+            this.errors = { errors: { Error: err.message } };
             this.isSubmitting = false;
             this.cd.markForCheck();
           }
