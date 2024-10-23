@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../core/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-auth',
@@ -56,7 +57,15 @@ export class AuthComponent implements OnInit {
         .attemptAuth(this.authType, credentials)
         .subscribe(
           data => {
-            this.router.navigateByUrl('/auth/login');  // Redirige al login después del registro
+            Swal.fire({
+              title: '¡Registro exitoso!',
+              text: 'Te has registrado correctamente. Ahora puedes iniciar sesión.',
+              icon: 'success',
+              timer: 3000,
+              showConfirmButton: false 
+            }).then(() => {
+              this.router.navigateByUrl('/auth/login');  // Redirige al login después del registro
+            });
           },
           err => {
             this.isSubmitting = false;
@@ -69,7 +78,15 @@ export class AuthComponent implements OnInit {
         .attemptAuth(this.authType, credentials)
         .subscribe(
           data => {
-            this.router.navigateByUrl('/');  // Redirige a la home después de iniciar sesión
+            Swal.fire({
+              title: '¡Inicio de sesión exitoso!',
+              text: 'Has iniciado sesión correctamente.',
+              icon: 'success',
+              timer: 3000,  // Se cierra automáticamente después de 3 segundos
+              showConfirmButton: false // Oculta el botón de confirmación
+            }).then(() => {
+              this.router.navigateByUrl('/');  // Redirige a la página principal después del login
+            });
           },
           err => {
             this.isSubmitting = false;
