@@ -58,7 +58,13 @@ const JobSchema = mongoose.Schema({
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'
-    }]
+    }],
+    state: {
+        type: String,
+        enum: ['pending', 'accepted', 'rejected', 'completed'], // Valores permitidos
+        default: 'pending', // Valor por defecto
+        required: true
+    }
 });
 
 
@@ -97,7 +103,8 @@ JobSchema.methods.toJobResponse = async function  (user) {
             requirements: this.requirements,
             favorited: user ? user.isFavorite(this._id) : false,
             favoritesCount: this.favoritesCount,
-            author: authorObj ? authorObj.toProfileJSON(user) : null
+            author: authorObj ? authorObj.toProfileJSON(user) : null,
+            state: this.state
         }
     } else {
         // return "no hay usuario"
@@ -115,7 +122,8 @@ JobSchema.methods.toJobResponse = async function  (user) {
             requirements: this.requirements,
             favorited: false,
             favoritesCount: this.favoritesCount,
-            author:  authorObj ? authorObj.toProfileJSON(user) : null
+            author:  authorObj ? authorObj.toProfileJSON(user) : null,
+            state: this.state
             
         }
     }

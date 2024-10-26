@@ -17,7 +17,8 @@ const createJob = asyncHandler(async (req, res) => { //
         company_name: req.body.company_name || null,  
         published_at: req.body.published_at || Date.now(),  
         location: req.body.location || null,
-        requirements: req.body.requirements || null
+        requirements: req.body.requirements || null,
+        state: req.body.state || 'pending'
     };
 
     const id_cat = req.body.id_cat;
@@ -62,6 +63,7 @@ const findAllJob = asyncHandler(async (req, res) => { //
 
     query = {
         name: { $regex: nameReg },
+        state: 'accepted',
         $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
     };
 
