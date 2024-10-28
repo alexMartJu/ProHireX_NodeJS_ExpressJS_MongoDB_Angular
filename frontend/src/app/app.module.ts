@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+import { FooterComponent, HeaderComponent, SharedModule, HeaderUserEnterpriseComponent } from './shared';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +18,8 @@ import { SettingsModule } from './settings/settings.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderUserEnterpriseComponent
   ],
   imports: [
     BrowserModule,
