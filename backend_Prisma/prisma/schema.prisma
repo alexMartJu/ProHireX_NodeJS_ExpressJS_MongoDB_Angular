@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model blacklistedtokens {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  token     String   @unique(map: "token_1")
+  updatedAt DateTime @db.Date
+  userId    String   @db.ObjectId
+}
+
+model categories {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  v             Int      @map("__v")
+  category_name String
+  id_cat        String
+  image         String
+  jobs          String[]
+  slug          String   @unique(map: "slug_1")
+}
+
+model comments {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  author    String   @db.ObjectId
+  body      String
+  createdAt DateTime @db.Date
+  job       String   @db.ObjectId
+  updatedAt DateTime @db.Date
+}
+
+model jobs {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  v              Int      @map("__v")
+  comments       String[]
+  company_name   String
+  description    String
+  favoritesCount Int?
+  id_cat         String
+  images         String[]
+  img            String
+  location       String
+  name           String
+  price          Int
+  published_at   DateTime @db.Date
+  requirements   String
+  slug           String   @unique(map: "slug_1")
+  state          String?
+}
+
+model refreshtokens {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  token     String   @unique(map: "token_1")
+  updatedAt DateTime @db.Date
+  userId    String   @db.ObjectId
+}
+
+model users {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  v              Int      @map("__v")
+  bio            String
+  createdAt      DateTime @db.Date
+  email          String   @unique(map: "email_1")
+  favouriteJobs  String[]
+  followersUsers String[]
+  followingUsers String[]
+  image          String
+  password       String
+  updatedAt      DateTime @db.Date
+  username       String   @unique(map: "username_1")
+  uuid           String   @unique(map: "uuid_1")
+}
+
+model usersEnterprise {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  email     String   @unique(map: "email_1")
+  image     String
+  password  String
+  updatedAt DateTime @db.Date
+  username  String   @unique(map: "username_1")
+}
+
