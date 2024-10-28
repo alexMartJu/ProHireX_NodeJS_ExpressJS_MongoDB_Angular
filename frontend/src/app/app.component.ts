@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from './core';
+import { UserService, UserEnterpriseService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,20 @@ import { UserService } from './core';
 })
 export class AppComponent {
   title = 'frontend';
+  isCompanyUser = false;
+  isLoading = true;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+    private userEnterpriseService: UserEnterpriseService
+  ) {}
 
   ngOnInit() {
     this.userService.populate();
+    this.userEnterpriseService.populate();
+    this.userEnterpriseService.isAuthenticated.subscribe(isAuthenticated => {
+      this.isCompanyUser = isAuthenticated;
+      this.isLoading = false;
+      console.log(this.isCompanyUser);
+    });
   };
 }

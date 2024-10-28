@@ -1,4 +1,7 @@
-<app-header></app-header>
+<ng-container *ngIf="!isLoading">
+    <app-header *ngIf="!isCompanyUser"></app-header>
+    <app-header-user-enterprise *ngIf="isCompanyUser"></app-header-user-enterprise>
+</ng-container>
 <div class="main-container">
     <router-outlet></router-outlet>
 </div>
