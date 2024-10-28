@@ -33,6 +33,12 @@
                   class="form-control form-control-lg"
                   type="password" />
               </fieldset>
+              <fieldset class="form-group" *ngIf="authType === 'login'">
+                <label>
+                  <input type="checkbox" formControlName="checkboxEnterprise" />
+                  Log Como Empresa
+                </label>
+              </fieldset>
               <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
                 {{ title }}
               </button>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../core/services/auth.service';
 import Swal from 'sweetalert2';
 import { Errors } from '../core';
+import { UserEnterpriseService } from '../core/services_Prisma/auth-enterprise.service';
 
 @Component({
   selector: 'app-auth',
@@ -23,12 +24,14 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private userEnterpriseService: UserEnterpriseService
   ) {
     // use FormBuilder to create a form group
     this.authForm = this.fb.group({
       'email': ['', Validators.required],
-      'password': ['', Validators.required]
+      'password': ['', Validators.required],
+      'checkboxEnterprise': [false]
     });
   }
 
@@ -48,46 +51,44 @@ export class AuthComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
-    this.errors = {errors: {}};
+    this.errors = { errors: {} };
   
     const credentials = this.authForm.value;
-    // console.log('Sending credentials:', this.user); 
+    const checkboxEnterprise = this.authForm.get('checkboxEnterprise')?.value; // Obtiene el valor del checkbox
+  
     console.log(this.authType);
   
     if (this.authType === 'register') {
-      // Si está en modo de registro, realiza el registro y redirige al formulario de login
-      this.userService
-        .attemptAuth(this.authType, credentials)
-        .subscribe(
-          data => {
-            Swal.fire({
-              title: '¡Registro exitoso!',
-              text: 'Te has registrado correctamente. Ahora puedes iniciar sesión.',
-              icon: 'success',
-              timer: 3000,
-              showConfirmButton: false 
-            }).then(() => {
-              this.router.navigateByUrl('/auth/login');  // Redirige al login después del registro
-            });
-          },
-          err => {
-            this.errors = { errors: { Error: err.message } };
-            this.isSubmitting = false;
-            this.cd.markForCheck();
-          }
-        );
+      // Lógica para registro
+      this.userService.attemptAuth(this.authType, credentials).subscribe(
+        data => {
+          Swal.fire({
+            title: '¡Registro exitoso!',
+            text: 'Te has registrado correctamente. Ahora puedes iniciar sesión.',
+            icon: 'success',
+            timer: 3000,
+            showConfirmButton: false 
+          }).then(() => {
+            this.router.navigateByUrl('/auth/login');  // Redirige al login después del registro
+          });
+        },
+        err => {
+          this.errors = { errors: { Error: err.message } };
+          this.isSubmitting = false;
+          this.cd.markForCheck();
+        }
+      );
     } else if (this.authType === 'login') {
-      // Si está en modo login, inicia sesión y redirige a la página principal
-      this.userService
-        .attemptAuth(this.authType, credentials)
-        .subscribe(
+      // Si el checkbox NO está marcado, utiliza userService
+      if (!checkboxEnterprise) {
+        this.userService.attemptAuth(this.authType, credentials).subscribe(
           data => {
             Swal.fire({
               title: '¡Inicio de sesión exitoso!',
               text: 'Has iniciado sesión correctamente.',
               icon: 'success',
-              timer: 3000,  // Se cierra automáticamente después de 3 segundos
-              showConfirmButton: false // Oculta el botón de confirmación
+              timer: 3000,
+              showConfirmButton: false
             }).then(() => {
               this.router.navigateByUrl('/');  // Redirige a la página principal después del login
             });
@@ -99,6 +100,29 @@ export class AuthComponent implements OnInit {
             this.cd.markForCheck();
           }
         );
+      } else {
+        // Si el checkbox está marcado, utiliza userPrismaService
+        this.userEnterpriseService.attemptAuth(this.authType, credentials).subscribe(
+          data => {
+            Swal.fire({
+              title: '¡Inicio de sesión exitoso!',
+              text: 'Has iniciado sesión correctamente.',
+              icon: 'success',
+              timer: 3000,
+              showConfirmButton: false
+            }).then(() => {
+              this.router.navigateByUrl('/dashboard_Prisma');  // Redirige al dashboard después del login
+            });
+          },
+          err => {
+            console.log('Error recibido:', err);
+            this.errors = { errors: { Error: err.message } };
+            this.isSubmitting = false;
+            this.cd.markForCheck();
+          }
+        );
+      }
     }
   }
+  
 }
