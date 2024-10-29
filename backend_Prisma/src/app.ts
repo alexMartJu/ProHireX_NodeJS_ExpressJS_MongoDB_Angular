@@ -1,5 +1,6 @@
 import express from "express";
 import authEnterpriseRouter from "./routes/api/authEnterprise";
+import jobsRouter from "./routes/api/jobs";
 import cors from "cors";
 
 const app = express();
@@ -17,5 +18,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/authEnterprise", authEnterpriseRouter);
+app.use("/api/jobs", jobsRouter);
 
 export default app;
