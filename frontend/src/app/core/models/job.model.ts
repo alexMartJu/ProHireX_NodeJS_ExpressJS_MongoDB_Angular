@@ -12,7 +12,8 @@ export interface Job {
     published_at: Date;        
     location: string;          
     requirements: string;
-    favorited: boolean;  //añadido de aqui hacia abajo
+    favorited: boolean;  
     favoritesCount: number;
     author: Profile;
+    state: string;
 }

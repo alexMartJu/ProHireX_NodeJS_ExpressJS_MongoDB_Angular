@@ -3,6 +3,7 @@ nav {
     background-color: #333;
     color: #fff;
     height: 100vh;
+    display: flex; /* Usar flexbox para centrar los elementos */
 }
 
 ul {
@@ -11,14 +12,27 @@ ul {
 }
 
 li {
-    margin: 10px 0;
+    margin: 15px 0; /* Aumentar el margen para más espacio */
 }
 
 a {
     color: #fff;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s; /* Transición suave para el color */
+}
+
+a i {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+    font-size: 1.2rem; /* Tamaño del icono */
+}
+
+a:hover {
+    color: #FFD700; /* Cambiar color al pasar el ratón */
 }
 
 a.active {
     font-weight: bold;
+    text-decoration: underline; /* Subrayar el enlace activo */
 }
