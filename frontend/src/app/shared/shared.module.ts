@@ -18,6 +18,7 @@ import { FollowListComponent } from './follow-list/follow-list.component';
 import { ListJobsOnProfileComponent } from './list-jobs-on-profile/list-jobs-on-profile.component';
 import { ListFavJobsProfileComponent } from './list-fav-jobs-profile/list-fav-jobs-profile.component';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
+import { JobItemDashboardComponent } from './components_Prisma/job-item-dashboard/job-item-dashboard.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ListErrorsComponent } from './list-errors/list-errors.component';
     FollowListComponent,
     ListJobsOnProfileComponent,
     ListFavJobsProfileComponent,
-    ListErrorsComponent
+    ListErrorsComponent,
+    JobItemDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { ListErrorsComponent } from './list-errors/list-errors.component';
       FollowListComponent,
       ListJobsOnProfileComponent,
       ListFavJobsProfileComponent,
-      ListErrorsComponent
+      ListErrorsComponent,
+      JobItemDashboardComponent
   ],
 })
 export class SharedModule { }

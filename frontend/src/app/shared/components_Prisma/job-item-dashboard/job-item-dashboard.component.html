@@ -1,0 +1,23 @@
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ job.name }}</h5>
+                <p class="card-text"><strong>Empresa:</strong> {{ job.company_name }}</p>
+                <p class="card-text"><strong>Localidad:</strong> {{ job.location }}</p>
+                <p class="card-text"><strong>Salario:</strong> {{ job.price | number: '1.2-2' }} €</p>
+                <p class="card-text"><strong>Fecha de Publicación:</strong> {{ job.published_at | date:'shortDate' }}</p>
+                <p class="card-text"><strong>Requisitos:</strong> {{ job.requirements }}</p>
+                <p class="card-text">
+                    <strong>Estado:</strong> 
+                    <span [ngClass]="getStatusClass(job.state)">
+                        {{ getTranslatedStatus(job.state) }}
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <img src="{{ job.img }}" class="img-fluid" alt="{{ job.name }}">
+        </div>
+    </div>
+</div>

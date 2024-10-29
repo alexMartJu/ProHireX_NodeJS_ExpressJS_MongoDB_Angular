@@ -1,0 +1,57 @@
+.card {
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s; /* Efecto de transformación suave */
+}
+
+.card:hover {
+    transform: scale(1.02); /* Efecto de hover: agrandar ligeramente la tarjeta */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    margin: 0.5rem 0; 
+    overflow: hidden; /* Ocultar contenido que se desborde */
+    text-overflow: ellipsis; /* Agregar puntos suspensivos para el texto que se desborde */
+    display: -webkit-box; /* Usar box model de WebKit */
+    -webkit-box-orient: vertical; /* Orientación vertical */
+    -webkit-line-clamp: 1; /* Limitar a 1 líneas */
+    line-clamp: 1;
+}
+
+/* Para asegurar que la imagen no distorsione */
+.img-fluid {
+    height: 100%; /* Asegura que la imagen ocupe toda la altura disponible */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-top-right-radius: 8px; /* Esquinas redondeadas en la parte superior derecha */
+    border-bottom-right-radius: 8px; /* Esquinas redondeadas en la parte inferior derecha */
+}
+
+.status-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.status-accepted {
+    color: green;
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: red;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: blue;
+    font-weight: bold;
+}

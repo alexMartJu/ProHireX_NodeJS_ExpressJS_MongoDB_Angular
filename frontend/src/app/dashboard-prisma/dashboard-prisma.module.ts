@@ -7,19 +7,20 @@ import { DashboardSidebarPrismaComponent } from './dashboard-sidebar-prisma.comp
 import { DashboardCreateJobComponent } from './dashboard-create-job.component';
 import { DashboardListJobsComponent } from './dashboard-list-jobs.component';
 import { FormsModule } from '@angular/forms';
-
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [
     DashboardPrismaComponent,
     DashboardSidebarPrismaComponent,
     DashboardCreateJobComponent,
-    DashboardListJobsComponent,
-    FormsModule
+    DashboardListJobsComponent
   ],
   imports: [
     CommonModule,
-    DashboardPrismaRoutingModule
+    DashboardPrismaRoutingModule,
+    FormsModule,
+    SharedModule
   ]
 })
 export class DashboardPrismaModule { }
