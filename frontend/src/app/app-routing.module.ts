@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+  },
+  {
+    path: 'dashboard_Prisma',
+    loadChildren: () => import('./dashboard-prisma/dashboard-prisma.module').then(m => m.DashboardPrismaModule)
   }
 ];
 

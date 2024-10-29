@@ -1,0 +1,12 @@
+.dashboard-container {
+    display: flex;
+}
+
+app-dashboard-sidebar-prisma {
+    width: 300px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}

@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingsModule } from './settings/settings.module';
+import { DashboardPrismaModule } from './dashboard-prisma/dashboard-prisma.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SettingsModule } from './settings/settings.module';
     NgbModule,
     AuthModule,
     ProfileModule,
-    SettingsModule
+    SettingsModule,
+    DashboardPrismaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
