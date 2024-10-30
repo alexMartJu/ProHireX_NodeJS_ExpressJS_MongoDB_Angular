@@ -1,1 +1,78 @@
-<p>dashboard-create-job works!</p>
+<h1>Crear Oferta De Trabajo</h1>
+<form class="job-form p-4" [formGroup]="jobForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group mb-3">
+        <label for="name" class="form-label">Nombre Empleo:</label>
+        <input id="name" formControlName="name" class="form-control" />
+        <div *ngIf="jobForm.get('name')?.errors?.['backend']" class="error">
+            {{ jobForm.get('name')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="price" class="form-label">Salario:</label>
+        <input id="price" type="number" formControlName="price" class="form-control" />
+        <div *ngIf="jobForm.get('price')?.errors?.['backend']" class="error">
+            {{ jobForm.get('price')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="description" class="form-label">Descripción:</label>
+        <textarea id="description" formControlName="description" class="form-control"></textarea>
+        <div *ngIf="jobForm.get('description')?.errors?.['backend']" class="error">
+            {{ jobForm.get('description')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="img" class="form-label">Subir Imagen Principal:</label>
+        <input type="file" id="img" (change)="onFileChangeSingle($event)" #singleFileInput class="form-control-file" />
+        <div>{{ jobForm.get('img')?.value }}</div>
+        <div *ngIf="jobForm.get('img')?.errors?.['backend']" class="error">
+            {{ jobForm.get('img')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="company_name" class="form-label">Nombre Empresa:</label>
+        <input id="company_name" formControlName="company_name" class="form-control" />
+        <div *ngIf="jobForm.get('company_name')?.errors?.['backend']" class="error">
+            {{ jobForm.get('company_name')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="id_cat" class="form-label">ID Categoria (cat000-cat010):</label>
+        <input id="id_cat" formControlName="id_cat" class="form-control" />
+        <div *ngIf="jobForm.get('id_cat')?.errors?.['backend']" class="error">
+            {{ jobForm.get('id_cat')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="images" class="form-label">Subir Imagenes Detalles:</label>
+        <input type="file" id="images" (change)="onFileChange($event)" #fileInput class="form-control-file" multiple />
+        <div *ngFor="let image of jobForm.get('images')?.value" class="file-name">{{ image }}</div>
+        <div *ngIf="jobForm.get('images')?.errors?.['backend']" class="error">
+            {{ jobForm.get('images')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="location" class="form-label">Localidad:</label>
+        <input id="location" formControlName="location" class="form-control" />
+        <div *ngIf="jobForm.get('location')?.errors?.['backend']" class="error">
+            {{ jobForm.get('location')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="requirements" class="form-label">Requisitos:</label>
+        <textarea id="requirements" formControlName="requirements" class="form-control"></textarea>
+        <div *ngIf="jobForm.get('requirements')?.errors?.['backend']" class="error">
+            {{ jobForm.get('requirements')?.errors?.['backend'] }}
+          </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>

@@ -8,6 +8,7 @@ import { DashboardCreateJobComponent } from './dashboard-create-job.component';
 import { DashboardListJobsComponent } from './dashboard-list-jobs.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SharedModule } from '../shared';
     CommonModule,
     DashboardPrismaRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardPrismaModule { }
