@@ -1,14 +1,15 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiPrismaService } from '../core';
-import { Errors } from '../core';
+import { Errors, UserEnterpriseService } from '../core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard-create-job',
   templateUrl: './dashboard-create-job.component.html',
   styleUrls: ['./dashboard-create-job.component.css']
 })
-export class DashboardCreateJobComponent {
+export class DashboardCreateJobComponent implements OnInit {
   jobForm: FormGroup;
   errors: Errors = { errors: {} };
 
@@ -32,19 +33,28 @@ export class DashboardCreateJobComponent {
 
   constructor(
     private fb: FormBuilder,
-    private apiPrismaService: ApiPrismaService
+    private apiPrismaService: ApiPrismaService,
+    private userEnterpriseService: UserEnterpriseService
   ) {
     this.jobForm = this.fb.group({
       name: ['', Validators.required],
       price: [null, [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
-      company_name: ['', Validators.required],
+      company_name: [{  value: this.userEnterpriseService.getCurrentUser().username, disabled: true }, Validators.required],
       id_cat: ['', Validators.required],
       images: [[], Validators.required], // Campo array para múltiples imágenes
       location: ['', Validators.required],
       requirements: ['', Validators.required],
       img: ['', Validators.required], // Imagen única
     });
+  }
+
+  ngOnInit() {
+    // Obtiene el usuario actual y establece el nombre de la empresa
+    const currentUser = this.userEnterpriseService.getCurrentUser();
+    if (currentUser && currentUser.username) {
+      this.jobForm.patchValue({ company_name: currentUser.username });
+    }
   }
 
   onSubmit() {
@@ -54,14 +64,24 @@ export class DashboardCreateJobComponent {
     // Marca todos los campos como "touched" para mostrar mensajes de validación
     this.jobForm.markAllAsTouched();
 
+    console.log(this.jobForm.getRawValue());
     // Crear objeto de datos del formulario
-    const formData = { ...this.jobForm.value, images: this.jobForm.value.images };
+    // ** Cambiado: Ahora usamos getRawValue() para obtener todos los campos, incluso los deshabilitados como coompany_name**
+    const formData = { ...this.jobForm.getRawValue(), images: this.jobForm.value.images };
 
     // Llamada al servicio para enviar los datos
     this.apiPrismaService.post('/api/jobs/createjob', formData).subscribe({
       next: () => {
         console.log('Job created successfully');
         this.errors = { errors: {} };
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Trabajo creado exitosamente',
+          text: 'El trabajo ha sido creado con éxito. Puedes verlo en tu Listado de Ofertas.',
+          confirmButtonText: 'Aceptar'
+        });
+
         this.resetForm();
       },
       error: (err: Errors) => {
@@ -95,7 +115,8 @@ export class DashboardCreateJobComponent {
   // Resetea el formulario y los campos de entrada de archivos
   resetForm() {
     this.jobForm.reset();
-    this.jobForm.patchValue({ images: [], img: '' });
+    // ** Cambiado: Mantenemos el nombre de la empresa tras resetear el formulario**
+    this.jobForm.patchValue({ images: [], img: '', company_name: this.userEnterpriseService.getCurrentUser().username  });
     this.fileInput.nativeElement.value = '';
     this.singleFileInput.nativeElement.value = '';
   }

@@ -4,6 +4,9 @@ nav {
     color: #fff;
     height: 100vh;
     display: flex; /* Usar flexbox para centrar los elementos */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
