@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent, HeaderComponent, SharedModule, HeaderUserEnterpriseComponent } from './shared';
+import { FooterComponent, HeaderComponent, SharedModule, HeaderUserEnterpriseComponent, HeaderUserAdminComponent } from './shared';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +20,8 @@ import { DashboardPrismaModule } from './dashboard-prisma/dashboard-prisma.modul
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HeaderUserEnterpriseComponent
+    HeaderUserEnterpriseComponent,
+    HeaderUserAdminComponent
   ],
   imports: [
     BrowserModule,

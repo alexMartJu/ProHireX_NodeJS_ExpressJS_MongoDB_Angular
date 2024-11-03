@@ -1,0 +1,22 @@
+<div id="header">
+    <div class="logo">
+        <a routerLink="home">ProHireX</a>
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a class="nav-link">
+                    <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'"
+                        *ngIf="currentUser.image" class="user-pic" style="width: 35px; height: 35px;"
+                        alt="user image" />
+                    {{ currentUser.username }}
+                </a>
+            </li>
+            <li>
+                <button class="btn btn-outline-danger" (click)="logout()">
+                    Logout
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>

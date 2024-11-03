@@ -1,0 +1,86 @@
+/* Estilos generales del header */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #219ebc;
+    color: #fff;
+}
+
+/* Estilos del logo */
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Estilos de la navegación */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* Mostrar en línea */
+}
+
+/* Estilos de los elementos de la lista */
+nav ul li {
+    margin-left: 30px;
+}
+
+/* Estilos de los enlaces de navegación */
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+/* Efecto al pasar el ratón */
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+@media only screen and (max-width: 1170px) {
+    nav>ul>li>a {
+        padding: 35px 15px
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    nav {
+        display: block !important
+    }
+}
+
+@media only screen and (max-width: 959px) {
+    nav {
+        display: none;
+        width: 100%;
+        clear: both;
+        max-height: 400px;
+        overflow-y: scroll;
+        padding: 10px;
+    }
+
+    nav ul {
+        float: none;
+    }
+
+    nav li {
+        float: none;
+    }
+
+    nav ul li a {
+        float: none;
+        padding: 8px;
+        display: block;
+    }
+
+    #header nav a:hover {
+        background: #fff;
+        color: #333;
+        border-radius: 3px;
+    }
+}
