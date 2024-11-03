@@ -166,6 +166,7 @@ import { catchError, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../services/auth.service';
 import { Router } from '@angular/router'; // Importa Router para la redirección
 import { JwtService } from '../services';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
@@ -174,6 +175,11 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   constructor(private userService: UserService, private router: Router, private jwtService: JwtService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    if (!req.url.startsWith(environment.api_url)) {
+      return next.handle(req); // Ignorar si no es la URL correspondiente
+    }
+
     // Obtén el token de acceso desde localStorage
     const accessToken = this.jwtService.getToken();
 
