@@ -14,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingsModule } from './settings/settings.module';
 import { DashboardPrismaModule } from './dashboard-prisma/dashboard-prisma.module';
+import { DashboardTypeORMModule } from './dashboard-type-orm/dashboard-type-orm.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DashboardPrismaModule } from './dashboard-prisma/dashboard-prisma.modul
     AuthModule,
     ProfileModule,
     SettingsModule,
-    DashboardPrismaModule
+    DashboardPrismaModule,
+    DashboardTypeORMModule
   ],
   providers: [],
   bootstrap: [AppComponent]

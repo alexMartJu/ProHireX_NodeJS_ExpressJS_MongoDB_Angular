@@ -1,0 +1,16 @@
+.dashboard-container {
+    display: flex;
+    align-items: stretch;
+}
+
+app-dashboard-sidebar-type-orm {
+    width: 300px;
+    min-height: 100vh; /* Se asegura de ocupar al menos la altura de la ventana */
+    display: flex; /* Flex para que nav crezca a su altura completa */
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}

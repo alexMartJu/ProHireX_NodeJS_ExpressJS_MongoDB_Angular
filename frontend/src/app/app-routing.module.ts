@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'dashboard_Prisma',
     loadChildren: () => import('./dashboard-prisma/dashboard-prisma.module').then(m => m.DashboardPrismaModule)
+  },
+  {
+    path: 'dashboard_TypeORM',
+    loadChildren: () => import('./dashboard-type-orm/dashboard-type-orm.module').then(m => m.DashboardTypeORMModule)
   }
 ];
 
