@@ -1,6 +1,7 @@
 <ng-container *ngIf="!isLoading">
-    <app-header *ngIf="!isCompanyUser"></app-header>
-    <app-header-user-enterprise *ngIf="isCompanyUser"></app-header-user-enterprise>
+    <app-header *ngIf="!isCompanyUser && !isAdminUser"></app-header>
+    <app-header-user-enterprise *ngIf="isCompanyUser && !isAdminUser"></app-header-user-enterprise>
+    <app-header-user-admin *ngIf="isAdminUser"></app-header-user-admin>
 </ng-container>
 <div class="main-container">
     <router-outlet></router-outlet>
