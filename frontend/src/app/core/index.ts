@@ -6,3 +6,4 @@ export * from './interceptors';
 export * from './models_Prisma';
 export * from './services_Prisma';
 export * from './models_TypeORM';
+export * from './services_TypeORM';
