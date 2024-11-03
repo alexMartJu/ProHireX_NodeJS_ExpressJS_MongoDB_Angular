@@ -5,6 +5,7 @@ import { UserService } from '../core/services/auth.service';
 import Swal from 'sweetalert2';
 import { Errors } from '../core';
 import { UserEnterpriseService } from '../core/services_Prisma/auth-enterprise.service';
+import { UserAdminService } from '../core/services_TypeORM';
 
 @Component({
   selector: 'app-auth',
@@ -25,13 +26,15 @@ export class AuthComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
-    private userEnterpriseService: UserEnterpriseService
+    private userEnterpriseService: UserEnterpriseService,
+    private userAdminService: UserAdminService
   ) {
     // use FormBuilder to create a form group
     this.authForm = this.fb.group({
       'email': ['', Validators.required],
       'password': ['', Validators.required],
-      'checkboxEnterprise': [false]
+      'checkboxEnterprise': [false],
+      'checkboxAdmin': [false]
     });
   }
 
@@ -49,17 +52,35 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  toggleCheckbox(type: string) {
+    if (type === 'enterprise') {
+      // Deshabilita el checkbox de Admin si el de Empresa está marcado y viceversa
+      if (this.authForm.get('checkboxEnterprise')?.value) {
+        this.authForm.get('checkboxAdmin')?.setValue(false);
+        this.authForm.get('checkboxAdmin')?.disable();
+      } else {
+        this.authForm.get('checkboxAdmin')?.enable();
+      }
+    } else if (type === 'admin') {
+      // Deshabilita el checkbox de Empresa si el de Admin está marcado y viceversa
+      if (this.authForm.get('checkboxAdmin')?.value) {
+        this.authForm.get('checkboxEnterprise')?.setValue(false);
+        this.authForm.get('checkboxEnterprise')?.disable();
+      } else {
+        this.authForm.get('checkboxEnterprise')?.enable();
+      }
+    }
+  }
+  
   submitForm() {
     this.isSubmitting = true;
     this.errors = { errors: {} };
-  
+
     const credentials = this.authForm.value;
-    const checkboxEnterprise = this.authForm.get('checkboxEnterprise')?.value; // Obtiene el valor del checkbox
-  
-    console.log(this.authType);
-  
+    const checkboxEnterprise = this.authForm.get('checkboxEnterprise')?.value;
+    const checkboxAdmin = this.authForm.get('checkboxAdmin')?.value;
+
     if (this.authType === 'register') {
-      // Lógica para registro
       this.userService.attemptAuth(this.authType, credentials).subscribe(
         data => {
           Swal.fire({
@@ -69,7 +90,7 @@ export class AuthComponent implements OnInit {
             timer: 3000,
             showConfirmButton: false 
           }).then(() => {
-            this.router.navigateByUrl('/auth/login');  // Redirige al login después del registro
+            this.router.navigateByUrl('/auth/login');
           });
         },
         err => {
@@ -79,18 +100,36 @@ export class AuthComponent implements OnInit {
         }
       );
     } else if (this.authType === 'login') {
-      // Si el checkbox NO está marcado, utiliza userService
-      if (!checkboxEnterprise) {
-        this.userService.attemptAuth(this.authType, credentials).subscribe(
+      if (checkboxEnterprise  && !checkboxAdmin) {
+        this.userEnterpriseService.attemptAuth(this.authType, credentials).subscribe(
           data => {
             Swal.fire({
               title: '¡Inicio de sesión exitoso!',
-              text: 'Has iniciado sesión correctamente.',
+              text: 'Has iniciado sesión correctamente como Empresa.',
               icon: 'success',
               timer: 3000,
               showConfirmButton: false
             }).then(() => {
-              this.router.navigateByUrl('/');  // Redirige a la página principal después del login
+              this.router.navigateByUrl('/dashboard_Prisma');
+            });
+          },
+          err => {
+            this.errors = { errors: { Error: err.message } };
+            this.isSubmitting = false;
+            this.cd.markForCheck();
+          }
+        );
+      } else if (checkboxAdmin && !checkboxEnterprise) {
+        this.userAdminService.attemptAuth(this.authType, credentials).subscribe(
+          data => {
+            Swal.fire({
+              title: '¡Inicio de sesión exitoso!',
+              text: 'Has iniciado sesión correctamente como Admin.',
+              icon: 'success',
+              timer: 3000,
+              showConfirmButton: false
+            }).then(() => {
+              this.router.navigateByUrl('/dashboard_TypeORM');  // Cambia la ruta según corresponda
             });
           },
           err => {
@@ -101,8 +140,7 @@ export class AuthComponent implements OnInit {
           }
         );
       } else {
-        // Si el checkbox está marcado, utiliza userPrismaService
-        this.userEnterpriseService.attemptAuth(this.authType, credentials).subscribe(
+        this.userService.attemptAuth(this.authType, credentials).subscribe(
           data => {
             Swal.fire({
               title: '¡Inicio de sesión exitoso!',
@@ -111,11 +149,10 @@ export class AuthComponent implements OnInit {
               timer: 3000,
               showConfirmButton: false
             }).then(() => {
-              this.router.navigateByUrl('/dashboard_Prisma');  // Redirige al dashboard después del login
+              this.router.navigateByUrl('/');
             });
           },
           err => {
-            console.log('Error recibido:', err);
             this.errors = { errors: { Error: err.message } };
             this.isSubmitting = false;
             this.cd.markForCheck();
