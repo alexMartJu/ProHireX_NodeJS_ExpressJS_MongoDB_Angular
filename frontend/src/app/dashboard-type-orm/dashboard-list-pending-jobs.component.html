@@ -1,1 +1,6 @@
-<p>dashboard-list-pending-jobs works!</p>
+<h1>Ofertas de Trabajo Pendientes</h1>
+<app-list-job-pending-dashboard 
+  [jobs]="pendingJobs" 
+  (acceptJob)="onAccept($event)" 
+  (rejectJob)="onReject($event)">
+</app-list-job-pending-dashboard>

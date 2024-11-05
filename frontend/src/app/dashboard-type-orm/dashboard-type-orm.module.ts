@@ -6,6 +6,7 @@ import { DashboardTypeOrmComponent } from './dashboard-type-orm.component';
 import { DashboardSidebarTypeOrmComponent } from './dashboard-sidebar-type-orm.component';
 import { DashboardListPendingJobsComponent } from './dashboard-list-pending-jobs.component';
 import { DashboardListIncriptionJobsComponent } from './dashboard-list-incription-jobs.component';
+import { SharedModule } from '../shared';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DashboardListIncriptionJobsComponent } from './dashboard-list-incriptio
   ],
   imports: [
     CommonModule,
-    DashboardTypeORMRoutingModule
+    DashboardTypeORMRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardTypeORMModule { }
