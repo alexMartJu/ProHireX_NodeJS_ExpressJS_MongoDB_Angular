@@ -19,6 +19,7 @@ import { ListJobsOnProfileComponent } from './list-jobs-on-profile/list-jobs-on-
 import { ListFavJobsProfileComponent } from './list-fav-jobs-profile/list-fav-jobs-profile.component';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
 import { JobItemDashboardComponent } from './components_Prisma/job-item-dashboard/job-item-dashboard.component';
+import { ListJobPendingDashboardComponent } from './components_TypeORM/list-job-pending-dashboard/list-job-pending-dashboard.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { JobItemDashboardComponent } from './components_Prisma/job-item-dashboar
     ListJobsOnProfileComponent,
     ListFavJobsProfileComponent,
     ListErrorsComponent,
-    JobItemDashboardComponent
+    JobItemDashboardComponent,
+    ListJobPendingDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { JobItemDashboardComponent } from './components_Prisma/job-item-dashboar
       ListJobsOnProfileComponent,
       ListFavJobsProfileComponent,
       ListErrorsComponent,
-      JobItemDashboardComponent
+      JobItemDashboardComponent,
+      ListJobPendingDashboardComponent
   ],
 })
 export class SharedModule { }
