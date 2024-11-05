@@ -53,6 +53,7 @@ model jobs {
   requirements   String
   slug           String   @unique(map: "slug_1")
   state          String?
+  assignedAdminId   String?
 }
 
 model refreshtokens {

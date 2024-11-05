@@ -1,6 +1,21 @@
 import { Entity, ObjectIdColumn, Column, CreateDateColumn } from "typeorm";
 import { ObjectId } from "mongodb";
 
+// Define la interfaz Job para mayor claridad
+export interface Job {
+  slug: string; // Identificador del trabajo
+  name: string;
+  price: number;
+  description: string;
+  img: string;
+  company_name: string;
+  id_cat: string;
+  images: string[];
+  location: string;
+  requirements: string;
+  state?: string;
+}
+
 @Entity()
 export class UserAdmin {
   @ObjectIdColumn()
@@ -20,6 +35,9 @@ export class UserAdmin {
 
   @CreateDateColumn()
   createdAt!: Date;
+
+  @Column("json", { nullable: true }) // Almacena trabajos como JSON
+  jobs?: Job[]; // Usando la interfaz Job para mayor claridad
 
   // Método para serializar la entidad a una respuesta de usuario
   toResponse(token?: string) {
