@@ -1,6 +1,6 @@
 import { jobs } from "@prisma/client";
 
-export default function jobViewer(job: jobs) {
+export default function jobViewer(job: jobs & { assignedAdmin?: string }) {
   return {
     id: job.id,
     title: job.name,                  
@@ -11,6 +11,7 @@ export default function jobViewer(job: jobs) {
     requirements: job.requirements,     
     img: job.img,                 
     slug: job.slug,                     
-    state: job.state                    
+    state: job.state,
+    assignedAdmin: job.assignedAdmin                    
   };
 }
