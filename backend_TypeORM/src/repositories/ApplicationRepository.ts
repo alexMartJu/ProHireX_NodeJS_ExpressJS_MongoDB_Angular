@@ -23,4 +23,13 @@ export class ApplicationRepository {
     async findBySlugAndUuid(slug: string, uuid: string): Promise<Application | null> {
         return this.repo.findOne({ where: { slug, uuid, isApplied: true } });
     }
+
+    async update(application: Application): Promise<Application | null> {
+        await this.repo.save(application); // Usa save para actualizar el objeto completo
+        return this.repo.findOneBy({ _id: new ObjectId(application._id) }); // Retorna el objeto actualizado
+    }
+
+    async findOneBySlug(applicationSlug: string): Promise<Application | null> {
+        return this.repo.findOne({ where: { applicationSlug } });
+    }
 }

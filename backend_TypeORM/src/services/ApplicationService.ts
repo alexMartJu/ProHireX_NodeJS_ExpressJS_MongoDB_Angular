@@ -38,4 +38,13 @@ export class ApplicationService {
         return application !== null; // Retorna true si se encontró la aplicación
     }
 
+    async updateApplication(application: Application): Promise<Application | null> {
+        return this.applicationRepository.update(application);
+    }
+
+    // Método para obtener la aplicación por slug
+    async getApplicationByApplicationSlug(applicationSlug: string): Promise<Application | null> {
+        return this.applicationRepository.findOneBySlug(applicationSlug); // Implementa este método en tu repositorio
+    }
+
 }

@@ -1,12 +1,15 @@
 // src/routes/ApplicationRoutes.ts
 import { Router } from 'express';
-import { applyForJob, getPendingApplicationsByAdmin, hasUserApplied } from '../controllers/ApplicationController';
+import { applyForJob, respondToApplication, getPendingApplicationsByAdmin, hasUserApplied } from '../controllers/ApplicationController';
 import { verifyJWT } from '../middleware/verifyJWT'; // Middleware para verificar el token JWT
 
 const router = Router();
 
 // Ruta para aplicar a un trabajo
 router.post('/apply', applyForJob);
+
+// Ruta para responder a una solicitud de inscripción (aceptar o rechazar)
+router.post('/respond', verifyJWT, respondToApplication);
 
 // Ruta para listar las inscripciones pendientes para un userAdmin específico
 router.get('/pending/applications', verifyJWT, getPendingApplicationsByAdmin);
