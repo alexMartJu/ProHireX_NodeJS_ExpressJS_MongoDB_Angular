@@ -1,0 +1,11 @@
+<li>
+    <h3>{{ application.job?.name }}</h3>
+    <p><strong>Nombre de Empresa:</strong> {{ application.job?.company_name }}</p>
+    <p><strong>Localización:</strong> {{ application.job?.location }}</p>
+    <p><strong>Aplicante:</strong> {{ application.user?.username }} ({{ application.user?.email }})</p>
+    <p><strong>Profesión:</strong> {{ application.job?.name }}</p>
+
+    <!-- Botones para aceptar o rechazar la aplicación -->
+    <button (click)="onAccept()">Accept</button>
+    <button (click)="onReject()">Reject</button>
+</li>
