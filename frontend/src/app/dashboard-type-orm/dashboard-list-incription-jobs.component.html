@@ -1,1 +1,12 @@
-<p>dashboard-list-incription-jobs works!</p>
+<div *ngIf="pendingApplications.length > 0; else noApplications">
+    <h1>Inscripciones Pendientes</h1>
+    <ul>
+        <app-list-application-pending-dashboard *ngFor="let application of pendingApplications"
+            [application]="application" (updateStatus)="respondToApplication($event.applicationSlug, $event.status)">
+        </app-list-application-pending-dashboard>
+    </ul>
+</div>
+
+<ng-template #noApplications>
+    <p>No hay inscripciones pendientes.</p>
+</ng-template>
