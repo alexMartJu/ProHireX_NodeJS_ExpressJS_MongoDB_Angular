@@ -15,6 +15,11 @@ export class ApplicationRepository {
         return this.repo.save(application);
     }
 
+    // Método para encontrar aplicaciones pendientes por admin
+    async findPendingApplicationsByAdmin(adminId: string): Promise<Application[]> {
+        return this.repo.find({ where: { assignedAdminId: new ObjectId(adminId), status: 'pending' } });
+    }
+
     async findBySlugAndUuid(slug: string, uuid: string): Promise<Application | null> {
         return this.repo.findOne({ where: { slug, uuid, isApplied: true } });
     }

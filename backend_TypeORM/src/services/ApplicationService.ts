@@ -29,6 +29,10 @@ export class ApplicationService {
         return this.applicationRepository.create(application);
     }
 
+    async getPendingApplicationsByAdmin(adminId: string): Promise<Application[]> {
+        return this.applicationRepository.findPendingApplicationsByAdmin(adminId);
+    }
+
     async hasUserApplied(slug: string, uuid: string): Promise<boolean> {
         const application = await this.applicationRepository.findBySlugAndUuid(slug, uuid);
         return application !== null; // Retorna true si se encontró la aplicación
