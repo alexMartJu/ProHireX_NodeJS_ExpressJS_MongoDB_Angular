@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { UserAdmin } from '../entities/AuthAdmin';
+import { Application } from '../entities/Application';
 import 'dotenv/config';
 
 export const AppDataSource = new DataSource({
@@ -8,5 +9,5 @@ export const AppDataSource = new DataSource({
   useUnifiedTopology: true,
   synchronize: true,
   logging: true,
-  entities: [UserAdmin],
+  entities: [UserAdmin, Application],
 });

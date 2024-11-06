@@ -1,6 +1,7 @@
 import express from 'express';
 import userAdminRoutes from './routes/authAdminRoutes';
 import adminRoutes from './routes/adminJobRoutes';
+import applicationRoutes from './routes/applicationRoutes';
 import { AppDataSource } from './config/database';
 import cors from "cors";
 import dotenv from "dotenv"
@@ -18,6 +19,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api/authAdmin', userAdminRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/application', applicationRoutes);
 
 AppDataSource.initialize()
   .then(() => console.log('Database connected'))
