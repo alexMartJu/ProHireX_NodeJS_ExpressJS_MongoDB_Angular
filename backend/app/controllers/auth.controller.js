@@ -238,11 +238,27 @@ const logout = asyncHandler(async (req, res) => {
     res.status(200).json({ message: 'Logged out successfully and token blacklisted' });
 });
 
+// GET USER DETAILS BY UUID
+const getUserDetailsByUUIDToApplicationAdmin = asyncHandler(async (req, res) => {
+    const { uuid } = req.params; // Suponiendo que el UUID se pasa en la URL
+
+    const user = await User.findOne({ uuid }).exec(); // Buscar el usuario por UUID
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({
+        user: user.toUserResponse() // Devolver la respuesta del usuario
+    });
+});
+
 module.exports = {
     registerUser,
     getCurrentUser,
     userLogin,
     updateUser,
     refreshToken,
-    logout
+    logout,
+    getUserDetailsByUUIDToApplicationAdmin
 }

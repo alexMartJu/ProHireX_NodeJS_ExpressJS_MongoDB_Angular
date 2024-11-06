@@ -19,4 +19,7 @@ module.exports = (app) => {
 
     // Logout --> Blacklist refresh token al hacer logout
     app.post('/users/logout', userController.logout);
+
+    // Get User Details by UUID To Application Admin (BackEnd TypeORM)
+    app.get('/users/applicationAdmin/:uuid', userController.getUserDetailsByUUIDToApplicationAdmin);
 }

@@ -27,4 +27,7 @@ module.exports = (app) => {
 
     //Unfavorite
     app.delete('/:slug/favorite', verifyJWT, jobs.unfavoriteJob);
+
+    //Get Job Details To ApplicationsAdmin (BackEnd TypeORM)
+    app.get('/jobs/applicationAdmin/:slug', jobs.getJobDetailsToApplicationAdmin);
 }

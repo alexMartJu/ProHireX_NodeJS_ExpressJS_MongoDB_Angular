@@ -272,6 +272,26 @@ const unfavoriteJob = asyncHandler(async (req, res) => {
     });
 });
 
+// GET JOB DETAILS BY ID
+const getJobDetailsToApplicationAdmin = asyncHandler(async (req, res) => {
+    const { slug } = req.params;
+
+    // Busca el trabajo por slug
+    const job = await Job.findOne({ slug }).exec();
+
+    if (!job) {
+        return res.status(404).json({
+            message: "Job Not Found"
+        });
+    }
+
+    // Devuelve la respuesta del trabajo
+    return res.status(200).json({
+        job: await job.toJobResponse() // No necesitas el usuario en este contexto
+    });
+});
+
+
 module.exports = { 
     createJob, 
     findAllJob,
@@ -280,5 +300,6 @@ module.exports = {
     GetJobsByCategory,
     updateJob,
     favouriteJob,
-    unfavoriteJob
+    unfavoriteJob,
+    getJobDetailsToApplicationAdmin
 } 
