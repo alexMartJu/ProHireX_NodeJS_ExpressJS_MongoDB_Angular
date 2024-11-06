@@ -24,6 +24,9 @@
                     (toggle)="onToggleFavorite($event)">
                     {{ job.favorited ? 'Unfavorite' : 'Favorite' }} Job <span class="counter">({{ job.favoritesCount }})</span>
                 </app-favorite-button>
+                <button class="btn btn-success" (click)="applyToJob()" [disabled]="hasApplied">
+                    {{ hasApplied ? 'Applied' : 'Apply' }}
+                </button>
             </div>
         </div>
     </div>
