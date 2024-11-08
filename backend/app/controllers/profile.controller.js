@@ -107,7 +107,7 @@ const getProfile_User = asyncHandler(async (req, res) => {
     const jobs = await Job.find({ "author": user._id }).select('-_id -author').exec();
 
     // Obtener los trabajos favoritos
-    const favouriteJobs = await Job.find({ _id: { $in: user.favouriteJobs } });
+    const favouriteJobs = await Job.find({ _id: { $in: user.favouriteJobs }, state: 'accepted' });
 
     // return res.json(jobs)
     return res.json({

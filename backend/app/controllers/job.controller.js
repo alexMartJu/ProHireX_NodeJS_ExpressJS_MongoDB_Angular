@@ -148,14 +148,24 @@ const GetJobsByCategory = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "Categoría no encontrada" });
     }
 
-    // Obtenemos el total de trabajos para la paginación
-    const job_count = await Job.countDocuments({ _id: { $in: category.jobs } });
+    // Verificar los trabajos asociados a la categoría
+    console.log("Trabajos asociados a la categoría:", category.jobs);
 
-    // Aplicamos paginación con offset y limit
-    const jobs = await Job.find({ _id: { $in: category.jobs } })
-                          .skip(offset)   // Aplicamos el offset
-                          .limit(limit)   // Aplicamos el límite por página
-                          .exec();
+    // Filtrar trabajos por 'id_cat' y estado 'accepted'
+    const job_count = await Job.countDocuments({
+        id_cat: category.id_cat, // Usamos id_cat de la categoría
+        state: 'accepted'
+    });
+
+    // Consultar trabajos con estado 'accepted' y el id_cat de la categoría
+    const jobs = await Job.find({
+        id_cat: category.id_cat, // Usamos id_cat de la categoría
+        state: 'accepted'
+    })
+    .skip(offset)
+    .limit(limit)
+    .exec();
+
 
     const user = await User.findById(req.userId);
 
