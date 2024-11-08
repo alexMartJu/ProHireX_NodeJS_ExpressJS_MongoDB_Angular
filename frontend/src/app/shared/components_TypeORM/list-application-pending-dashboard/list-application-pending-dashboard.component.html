@@ -1,11 +1,19 @@
-<li>
-    <h3>{{ application.job?.name }}</h3>
-    <p><strong>Nombre de Empresa:</strong> {{ application.job?.company_name }}</p>
-    <p><strong>Localización:</strong> {{ application.job?.location }}</p>
-    <p><strong>Aplicante:</strong> {{ application.user?.username }} ({{ application.user?.email }})</p>
-    <p><strong>Profesión:</strong> {{ application.job?.name }}</p>
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-12">
+            <div class="card-body">
+                <h5 class="card-title">{{ application.job?.name }}</h5>
+                <p class="card-text"><span class="label">Nombre de Empresa:</span> {{ application.job?.company_name }}</p>
+                <p class="card-text"><span class="label">Localización:</span> {{ application.job?.location }}</p>
+                <p class="card-text"><span class="label">Aplicante:</span> {{ application.user?.username }} ({{ application.user?.email }})</p>
+                <p class="card-text"><span class="label">Profesión:</span> {{ application.job?.name }}</p>
 
-    <!-- Botones para aceptar o rechazar la aplicación -->
-    <button (click)="onAccept()">Accept</button>
-    <button (click)="onReject()">Reject</button>
-</li>
+                <!-- Botones alineados a la derecha -->
+                <div class="button-container">
+                    <button (click)="onAccept()" class="btn btn-accept">Aceptar</button>
+                    <button (click)="onReject()" class="btn btn-reject">Rechazar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,16 +1,27 @@
 <div *ngIf="jobs.length > 0; else noJobs">
     <ul>
-        <li *ngFor="let job of jobs" class="job-item">
-            <h3>{{ job.name }}</h3>
-            <p>Company: {{ job.company_name }}</p>
-            <p>Location: {{ job.location }}</p>
-            <p>Price: {{ job.price | currency:'EUR' }}</p>
-            <p>Description: {{ job.description }}</p>
-            <button (click)="onAccept(job.slug)">Accept</button>
-            <button (click)="onReject(job.slug)">Reject</button>
+        <li *ngFor="let job of jobs" class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ job.name }}</h5>
+                        <p class="card-text"><span class="label">Nombre de Empresa:</span> {{ job.company_name }}</p>
+                        <p class="card-text"><span class="label">Localidad:</span> {{ job.location }}</p>
+                        <p class="card-text"><span class="label">Salario:</span> {{ job.price | currency:'EUR' }}</p>
+                        <p class="card-text"><span class="label">Descripcion:</span> {{ job.description }}</p>
+
+                        <!-- Botones alineados a la derecha -->
+                        <div class="button-container">
+                            <button (click)="onAccept(job.slug)" class="btn btn-accept">Aceptar</button>
+                            <button (click)="onReject(job.slug)" class="btn btn-reject">Rechazar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </li>
     </ul>
 </div>
+
 <ng-template #noJobs>
     <p>No hay trabajos disponibles a validar.</p>
 </ng-template>

@@ -28,7 +28,7 @@ export class ApiService {
     // console.log('Body:', JSON.stringify(body));
     return this.http.put(
       `${environment.api_url}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError(this.formatErrors));
   }
 
