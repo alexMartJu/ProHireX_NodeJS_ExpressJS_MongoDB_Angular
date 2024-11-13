@@ -22,6 +22,11 @@
     padding: 0;
 }
 
+/* Clase para alinear los botones */
+.button-group .btn, .button-group app-favorite-button {
+    margin-right: 8px;
+}
+
 .h-100 {
     height: 100%;
 }

@@ -17,8 +17,8 @@
                 <p class="job-company text-muted mb-1">{{ job.company_name }}</p>
                 <p class="job-location text-muted">{{ job.location }}</p>
             </div>
-            <div class="d-flex justify-content-between align-items-center mt-3"> 
-                <a class="btn btn-primary mt-3" [routerLink]="['/details/', job.slug]">View Details</a>
+            <div class="button-group d-flex justify-content-end align-items-center mt-3"> 
+                <a class="btn btn-primary me-2" [routerLink]="['/details/', job.slug]">View Details</a>
                 <app-favorite-button
                     [jobs]="job"
                     (toggle)="onToggleFavorite($event)">
