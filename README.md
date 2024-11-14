@@ -1,19 +1,19 @@
 # 💼 ProHireX
 
 ## 📑 Índice
-1. [📝 Descripción del Proyecto](#📝-descripción-del-proyecto)
-2. [🛠️ Tecnologías Utilizadas](#🛠️-tecnologías-utilizadas)
+1. [📝 Descripción del Proyecto](#descripción-del-proyecto)
+2. [🛠️ Tecnologías Utilizadas](#tecnologías-utilizadas)
    - 2.1 [Backend](#backend)
    - 2.2 [Frontend](#frontend)
-3. [🎨 Vistas de la Aplicación](#🎨-vistas-de-la-aplicación)
-   - 3.1 [🏠 Home](#🏠-home)
-   - 3.2 [🛒 Shop](#🛒-shop)
-   - 3.3 [📑 Detalles de la Oferta de Trabajo](#📑-detalles-de-la-oferta-de-trabajo)
-   - 3.4 [📝🔑 Register y Login](#📝🔑-register-y-login)
+3. [🎨 Vistas de la Aplicación](#vistas-de-la-aplicación)
+   - 3.1 [🏠 Home](#home)
+   - 3.2 [🛒 Shop](#shop)
+   - 3.3 [📑 Detalles de la Oferta de Trabajo](#detalles-de-la-oferta-de-trabajo)
+   - 3.4 [📝🔑 Register y Login](#register-y-login)
    - 3.5 [🧑‍💻 Profile del Usuario Candidato](#🧑‍💻-profile-del-usuario-candidato)
-   - 3.6 [🏢 Dashboard de Empresa](#🏢-dashboard-de-empresa)
-   - 3.7 [🛠️ Dashboard de Administrador](#🛠️-dashboard-de-administrador)
-4. [🚀 Como Ejecutar el Proyecto](#🚀-como-ejecutar-el-proyecto)
+   - 3.6 [🏢 Dashboard de Empresa](#dashboard-de-empresa)
+   - 3.7 [🛠️ Dashboard de Administrador](#dashboard-de-administrador)
+4. [🚀 Como Ejecutar el Proyecto](#como-ejecutar-el-proyecto)
 
 
 
