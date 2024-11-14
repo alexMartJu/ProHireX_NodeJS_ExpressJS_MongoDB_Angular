@@ -132,8 +132,6 @@ La paginación permite que las ofertas de trabajo se organicen en grupos de tres
 La URL de la página se actualiza dinámicamente al modificar filtros o avanzar entre páginas. Esto permite:
 - **Guardar y Compartir Búsquedas**: Los usuarios pueden copiar y compartir la URL, permitiendo que otros o ellos mismos regresen a la misma vista de resultados específicos, sin perder la configuración de filtros y la paginación aplicados.
 
----
-
 Esta estructura en la página **Shop** permite una navegación detallada, eficiente y personalizada para encontrar ofertas de trabajo ajustadas a las necesidades y preferencias de cada usuario.
 
 ### Details de la Oferta de Trabajo
@@ -166,7 +164,7 @@ Los usuarios pueden marcar una oferta como favorita haciendo clic en el botón d
 ![Vista de la Página Details 2](./frontend/src/assets/img_readme/details_2.png)
 
 ![Vista de la Página Details 3](./frontend/src/assets/img_readme/details_3.png)
----
+
 
 Esta vista permite que los usuarios tengan toda la información necesaria sobre la oferta de trabajo y interactúen con otros candidatos, mientras toman decisiones informadas sobre postularse.
 
@@ -201,8 +199,6 @@ La página de **Login** permite a los usuarios acceder a su cuenta en la platafo
   - **Verificación de Contraseña**: La contraseña introducida se compara con la contraseña almacenada en la base de datos utilizando **Argon2** para asegurarse de que sea correcta. Si la contraseña no coincide, el sistema muestra un mensaje de error.
 
 ![Formulario de Login](./frontend/src/assets/img_readme/login.png)
-
----
 
 Estas vistas permiten un proceso de registro y login intuitivo, asegurando que los usuarios accedan a la plataforma de manera segura y adecuada según su rol (candidato, empresa o administrador).
 
@@ -240,8 +236,6 @@ Los candidatos pueden ver todas las ofertas de trabajo que han marcado como **fa
 
 ![Vista de la Página Profile 3](./frontend/src/assets/img_readme/profile_3.png)
 
----
-
 La página **Perfil del Usuario Candidato** ofrece una vista completa y personalizable para que el usuario gestione su información personal, sus relaciones con otros usuarios (seguidores y seguidos), y sus trabajos favoritos. Con la opción de editar sus datos, actualizar su imagen de perfil, y ver las ofertas de trabajo que más le interesan, esta sección proporciona una experiencia de usuario completa y optimizada. Esto permite a los candidatos tener un control total sobre su presencia en la plataforma y facilitar su interacción con otros usuarios
 
 ### Dashboard de Empresa
@@ -274,8 +268,6 @@ Las empresas pueden **crear nuevas ofertas de trabajo** desde el Dashboard. Para
 El formulario tiene una **validación de datos** para asegurarse de que todos los campos obligatorios estén completos y correctamente introducidos. Si algún dato falta o es incorrecto, el sistema notificará al usuario para corregirlo antes de enviar la oferta.
 
 ![Dashboard Enterprise Crear](./frontend/src/assets/img_readme/dashboard_enterprise2.png)
-
----
 
 El **Dashboard de Empresa** proporciona a las empresas una interfaz intuitiva para gestionar sus ofertas de trabajo. Desde aquí, pueden visualizar el estado de cada oferta, crear nuevas publicaciones, y asegurarse de que todos los datos estén correctamente validados. Esto facilita la administración de ofertas y permite un flujo de trabajo más organizado y eficiente para las empresas.
 
@@ -317,8 +309,6 @@ El administrador tiene las siguientes opciones para gestionar las aplicaciones:
 - **Rechazar**: Si el administrador rechaza una aplicación, la oferta sigue disponible para otros candidatos.
 
 ![Dashboard Admin 2](./frontend/src/assets/img_readme/dashboard_admin2.png)
-
----
 
 El **Dashboard de Administrador** proporciona herramientas poderosas para gestionar el flujo de trabajo entre las ofertas de trabajo publicadas y las aplicaciones de los candidatos. El administrador puede aceptar o rechazar ofertas y aplicaciones, y se asegura de que el estado de las ofertas y las notificaciones a las empresas sean gestionados de manera adecuada. Esto ayuda a mantener el proceso de contratación organizado y eficiente, garantizando que las ofertas y los candidatos sean manejados de manera oportuna.
 
