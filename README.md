@@ -1,23 +1,23 @@
 # 💼 ProHireX
 
 ## 📑 Índice
-1. [📝 Descripción del Proyecto](#descripción-del-proyecto)
-2. [🛠️ Tecnologías Utilizadas](#tecnologías-utilizadas)
+1. [Descripción del Proyecto](#descripción-del-proyecto)
+2. [Tecnologías Utilizadas](#tecnologías-utilizadas)
    - 2.1 [Backend](#backend)
    - 2.2 [Frontend](#frontend)
-3. [🎨 Vistas de la Aplicación](#vistas-de-la-aplicación)
-   - 3.1 [🏠 Home](#home)
-   - 3.2 [🛒 Shop](#shop)
-   - 3.3 [📑 Detalles de la Oferta de Trabajo](#detalles-de-la-oferta-de-trabajo)
-   - 3.4 [📝🔑 Register y Login](#register-y-login)
-   - 3.5 [🧑‍💻 Profile del Usuario Candidato](#🧑‍💻-profile-del-usuario-candidato)
-   - 3.6 [🏢 Dashboard de Empresa](#dashboard-de-empresa)
-   - 3.7 [🛠️ Dashboard de Administrador](#dashboard-de-administrador)
-4. [🚀 Como Ejecutar el Proyecto](#como-ejecutar-el-proyecto)
+3. [ Vistas de la Aplicación](#vistas-de-la-aplicación)
+   - 3.1 [Home](#home)
+   - 3.2 [Shop](#shop)
+   - 3.3 [Details de la Oferta de Trabajo](#details-de-la-oferta-de-trabajo)
+   - 3.4 [Register y Login](#register-y-login)
+   - 3.5 [Profile del Usuario Candidato](#profile-del-usuario-candidato)
+   - 3.6 [Dashboard de Empresa](#dashboard-de-empresa)
+   - 3.7 [Dashboard de Administrador](#dashboard-de-administrador)
+4. [Como Ejecutar el Proyecto](#como-ejecutar-el-proyecto)
 
 
 
-## 📝 Descripción del Proyecto
+## Descripción del Proyecto
 Este proyecto es una plataforma de búsqueda de empleo diseñada para conectar a **candidatos**, **empresas** y **administradores**, optimizando el proceso de contratación y la búsqueda de empleo de manera sencilla y efectiva.
 
 ### Funcionalidades:
@@ -40,7 +40,7 @@ Este proyecto es una plataforma de búsqueda de empleo diseñada para conectar a
 
 Este sistema facilita la conexión entre empresas y candidatos de manera **intuitiva** y **efectiva**, mejorando la experiencia de la contratación.
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 Este proyecto utiliza una variedad de tecnologías modernas para asegurar su rendimiento, seguridad y escalabilidad.
 
 <p align="center">
@@ -76,10 +76,11 @@ Este proyecto utiliza una variedad de tecnologías modernas para asegurar su ren
 - **HTML**: Lenguaje de marcado para estructurar contenido web.
 - **CSS**: Lenguaje de estilos utilizado para diseñar la apariencia de las páginas web.
 
-## 🎨 Vistas de la Aplicación
+## Vistas de la Aplicación
 Aquí se muestran las principales vistas de la aplicación junto con una descripción de lo que cada sección ofrece al usuario.
 
-### 🏠 Home
+### Home
+---
 
 La página de inicio es el punto de entrada a la plataforma, donde los usuarios pueden explorar las oportunidades de empleo de manera visual e intuitiva.
 
@@ -94,7 +95,8 @@ La página de inicio es el punto de entrada a la plataforma, donde los usuarios 
 Este diseño facilita una navegación fluida y continua, ayudando a los usuarios a encontrar trabajos en áreas de su interés de forma rápida y organizada.
 
 
-### 🛒 Shop
+### Shop
+---
 
 La página **Shop** es la sección principal donde los usuarios pueden explorar las ofertas de empleo disponibles. A través de varias herramientas de búsqueda y filtros, **Shop** permite encontrar oportunidades laborales de forma rápida y personalizada. La página **Shop** es accesible desde la **Home**, mediante el carrusel de categorías o haciendo clic en las tarjetas de categoría, y también se puede acceder directamente desde el **header** de la aplicación.
 
@@ -134,7 +136,8 @@ La URL de la página se actualiza dinámicamente al modificar filtros o avanzar 
 
 Esta estructura en la página **Shop** permite una navegación detallada, eficiente y personalizada para encontrar ofertas de trabajo ajustadas a las necesidades y preferencias de cada usuario.
 
-### 📑 Details de la Oferta de Trabajo
+### Details de la Oferta de Trabajo
+---
 
 La página de **Detalles de la Oferta de Trabajo** proporciona información completa sobre cada trabajo, incluyendo su descripción, salario, empresa contratante, y más. Además, los usuarios pueden interactuar con la oferta a través de un sistema de comentarios y opciones de favoritos.
 
@@ -168,7 +171,8 @@ Los usuarios pueden marcar una oferta como favorita haciendo clic en el botón d
 Esta vista permite que los usuarios tengan toda la información necesaria sobre la oferta de trabajo y interactúen con otros candidatos, mientras toman decisiones informadas sobre postularse.
 
 
-### 📝🔑 Register y Login
+### Register y Login
+---
 
 La página de **Register** y **Login** permite que los usuarios se registren y accedan a la plataforma, ya sea como **candidatos**, **empresas**, o **administradores**. Ambas vistas cuentan con validaciones para asegurar que los datos introducidos sean correctos.
 
@@ -202,7 +206,8 @@ La página de **Login** permite a los usuarios acceder a su cuenta en la platafo
 
 Estas vistas permiten un proceso de registro y login intuitivo, asegurando que los usuarios accedan a la plataforma de manera segura y adecuada según su rol (candidato, empresa o administrador).
 
-### 🧑‍💻 Profile del Usuario Candidato
+### Profile del Usuario Candidato
+---
 
 La página de **Perfil del Candidato** permite a los usuarios ver y editar su información personal, gestionar sus seguidores y seguidos, y acceder a los trabajos que han marcado como favoritos. Esta vista es esencial para que el usuario tenga un control completo sobre su experiencia en la plataforma.
 
@@ -239,7 +244,8 @@ Los candidatos pueden ver todas las ofertas de trabajo que han marcado como **fa
 
 La página **Perfil del Usuario Candidato** ofrece una vista completa y personalizable para que el usuario gestione su información personal, sus relaciones con otros usuarios (seguidores y seguidos), y sus trabajos favoritos. Con la opción de editar sus datos, actualizar su imagen de perfil, y ver las ofertas de trabajo que más le interesan, esta sección proporciona una experiencia de usuario completa y optimizada. Esto permite a los candidatos tener un control total sobre su presencia en la plataforma y facilitar su interacción con otros usuarios
 
-### 🏢 Dashboard de Empresa
+### Dashboard de Empresa
+---
 
 La página de **Dashboard de Empresa** está diseñada para permitir a las empresas gestionar sus ofertas de trabajo de manera eficiente. Desde este panel, las empresas pueden ver el estado de sus ofertas, crear nuevas ofertas y mantener un control sobre todas las publicaciones activas.
 
@@ -273,7 +279,8 @@ El formulario tiene una **validación de datos** para asegurarse de que todos lo
 
 El **Dashboard de Empresa** proporciona a las empresas una interfaz intuitiva para gestionar sus ofertas de trabajo. Desde aquí, pueden visualizar el estado de cada oferta, crear nuevas publicaciones, y asegurarse de que todos los datos estén correctamente validados. Esto facilita la administración de ofertas y permite un flujo de trabajo más organizado y eficiente para las empresas.
 
-### 🛠️ Dashboard de Administrador
+### Dashboard de Administrador
+---
 
 El **Dashboard de Administrador** proporciona un control completo sobre las ofertas de trabajo publicadas por las empresas y las aplicaciones de los candidatos. Desde este panel, el administrador puede gestionar el estado de las ofertas, aceptarlas o rechazarlas, y decidir sobre las aplicaciones de los candidatos.
 
@@ -315,7 +322,7 @@ El administrador tiene las siguientes opciones para gestionar las aplicaciones:
 
 El **Dashboard de Administrador** proporciona herramientas poderosas para gestionar el flujo de trabajo entre las ofertas de trabajo publicadas y las aplicaciones de los candidatos. El administrador puede aceptar o rechazar ofertas y aplicaciones, y se asegura de que el estado de las ofertas y las notificaciones a las empresas sean gestionados de manera adecuada. Esto ayuda a mantener el proceso de contratación organizado y eficiente, garantizando que las ofertas y los candidatos sean manejados de manera oportuna.
 
-## 🚀 Como Ejecutar el Proyecto
+## Como Ejecutar el Proyecto
 
 Para ejecutar el proyecto, sigue estos pasos según el backend que deseas levantar:
 
